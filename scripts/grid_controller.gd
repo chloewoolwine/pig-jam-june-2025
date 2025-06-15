@@ -22,7 +22,11 @@ var running_order: Array[int]
 
 func _ready() -> void:
 	player.player_hit_note.connect(hit_note)
-	
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if(Input.is_action_pressed("reset")):
+		reset_all()
+
 func hit_note(note: Vector2i, location: Vector2i) -> void:
 	print("note: ", note, " location: ", location)
 	play_note(note.x, location)
@@ -61,3 +65,8 @@ func check_for_win(note: Vector2i) -> bool:
 		print("you win!!")
 		return true
 	return false
+
+
+func reset_all():
+	player.reset()
+	# there is nothing else to reset. 

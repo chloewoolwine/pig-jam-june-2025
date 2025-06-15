@@ -23,6 +23,9 @@ func _init() -> void:
 
 func reset() -> void: 
 	global_position = start_position * Globals.TILE_SIZE
+	moving = false
+	direction = Vector2i.ZERO
+	target_position = Vector2.INF
 
 func _physics_process(delta: float) -> void:
 	_play_anim()
