@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Pigsquad Slow Jam June 2025"
-run/main_scene="uid://3wkss58u6gfo"
+run/main_scene="uid://b5qcw0s0cuy4e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bysmomx1t2mu6"
 
 [autoload]
 
@@ -24,7 +24,6 @@ Globals="*res://scripts/globals.gd"
 window/size/viewport_width=320
 window/size/viewport_height=180
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [input]
 
