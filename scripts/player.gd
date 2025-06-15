@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal player_hit_note(note: Vector2i, location: Vector2i)
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_map: TileMapLayer = $"../Floor"
 ## IN PIXELS per delta, as in slide_speed * delta
@@ -82,23 +84,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print("hit music node")
 	if body is TileMapLayer: # it always is
 		var floor_type := get_floor_type_moving()
-		print(floor_type)
+		#print(floor_type)
 		match floor_type:
 			Vector2i.ZERO:
 				pass
-			Vector2i(1,0):
-				pass
-			Vector2i(2,0):
-				pass
-			Vector2i(3,0):
-				pass
-			Vector2i(4,0):
-				pass
-			Vector2i(5,0):
-				pass
-			Vector2i(6,0):
-				pass
-			Vector2i(7,0):
+			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0):
+				player_hit_note.emit(floor_type, get_floor_loc_moving())
 				pass
 			Vector2i(8,0):
 				# snow tile!!
@@ -131,6 +122,15 @@ func get_floor_type_still() -> Vector2i:
 	var curr_position:Vector2i = (tile_detector.global_position) /Globals.TILE_SIZE
 	var tile_loc = curr_position + direction
 	return floor_map.get_cell_atlas_coords(tile_loc)
+
+func get_floor_loc_moving() -> Vector2i:
+	var curr_position:Vector2i = (tile_detector.global_position) /Globals.TILE_SIZE
+	var tile_loc 
+	if(direction.x > 0 || direction.y > 0):
+		tile_loc = curr_position + direction
+	else:
+		tile_loc = curr_position
+	return tile_loc
 
 func move_to_center() -> void: 
 	var tile_loc:Vector2i
