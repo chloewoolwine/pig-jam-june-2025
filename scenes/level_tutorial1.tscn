@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=4 uid="uid://dji3hhy66xgaq"]
+
+[ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_ubr2x"]
+[ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_k1lo2"]
+[ext_resource type="Texture2D" uid="uid://cdly6ps0clrie" path="res://art/ice_5.png" id="3_nplmh"]
+[ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_fxwaq"]
+[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="5_ieji4"]
+[ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="6_5r1mx"]
+[ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="7_xrlyr"]
+[ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="8_w4fvt"]
+[ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="9_vq7i6"]
+[ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="10_wlsj3"]
+[ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_eks6v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j8kfm"]
+texture = ExtResource("3_nplmh")
+texture_region_size = Vector2i(20, 20)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+9:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+4:2/0 = 0
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 5, -10, 5)
+7:2/0 = 0
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+9:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+5:3/0 = 0
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+8:3/0 = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+9:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j8xcc"]
+tile_size = Vector2i(20, 20)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_j8kfm")
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+
+[node name="GridController" type="Node2D" parent="."]
+script = ExtResource("1_ubr2x")
+level_size = Vector2i(14, 7)
+correct_order = Array[int]([0])
+
+[node name="Floor" type="TileMapLayer" parent="GridController"]
+tile_map_data = PackedByteArray("AAAAAAAAAQAHAAIAAAAAAAEAAQAHAAIAAAAAAAIAAQAHAAIAAAAAAAMAAQAHAAIAAAAAAAQAAQAHAAIAAAAAAAUAAQAHAAIAAAAAAAYAAQAHAAIAAAAAAAcAAQAHAAIAAAAAAAgAAQAHAAIAAAAAAAkAAQAHAAIAAAAAAAoAAQAHAAIAAAABAAAAAQAHAAIAAAABAAEAAQAHAAIAAAABAAIAAQAHAAIAAAABAAMAAQAHAAIAAAABAAQAAQAHAAIAAAABAAUAAQABAAQAAAABAAYAAQAAAAAAAAABAAcAAQAHAAIAAAABAAgAAQAHAAIAAAABAAkAAQAHAAIAAAABAAoAAQAHAAIAAAACAAAAAQAHAAIAAAACAAEAAQABAAQAAAACAAIAAQADAAAAAAACAAMAAQAHAAIAAAACAAQAAQAHAAIAAAACAAUAAQAHAAIAAAACAAcAAQAAAAAAAAACAAgAAQAHAAIAAAACAAkAAQAHAAIAAAACAAoAAQAHAAIAAAADAAAAAQAHAAIAAAADAAEAAQAHAAIAAAADAAIAAQAHAAIAAAADAAMAAQAHAAIAAAADAAQAAQAHAAIAAAADAAUAAQAHAAIAAAADAAcAAQAHAAIAAAADAAgAAQAHAAIAAAADAAkAAQAHAAIAAAADAAoAAQAHAAIAAAAEAAAAAQAHAAIAAAAEAAEAAQAHAAIAAAAEAAIAAQAHAAIAAAAEAAMAAQAHAAIAAAAEAAQAAQAHAAIAAAAEAAUAAQAFAAAAAAAEAAcAAQAAAAAAAAAEAAgAAQAHAAIAAAAEAAkAAQAHAAIAAAAEAAoAAQAHAAIAAAAFAAAAAQAHAAIAAAAFAAEAAQAEAAAAAAAFAAIAAQAHAAIAAAAFAAMAAQAHAAIAAAAFAAQAAQAHAAIAAAAFAAUAAQABAAQAAAAFAAcAAQAAAAAAAAAFAAgAAQAHAAIAAAAFAAkAAQAHAAIAAAAFAAoAAQAHAAIAAAAGAAAAAQAHAAIAAAAGAAEAAQAHAAIAAAAGAAIAAQAHAAIAAAAGAAMAAQAHAAIAAAAGAAQAAQAAAAAAAAAGAAUAAQAHAAIAAAAGAAcAAQAAAAAAAAAGAAgAAQAHAAIAAAAGAAkAAQAHAAIAAAAGAAoAAQAHAAIAAAAHAAAAAQAHAAIAAAAHAAEAAQAHAAIAAAAHAAIAAQAHAAIAAAAHAAMAAQAHAAIAAAAHAAQAAQABAAQAAAAHAAUAAQABAAAAAAAHAAcAAQAAAAAAAAAHAAgAAQAHAAIAAAAHAAkAAQAHAAIAAAAHAAoAAQAHAAIAAAAIAAAAAQAHAAIAAAAIAAEAAQAHAAIAAAAIAAIAAQAHAAIAAAAIAAMAAQAHAAIAAAAIAAUAAQAHAAIAAAAIAAcAAQAAAAAAAAAIAAgAAQAHAAIAAAAIAAkAAQAHAAIAAAAIAAoAAQAHAAIAAAAJAAAAAQAHAAIAAAAJAAEAAQAHAAIAAAAJAAIAAQAHAAIAAAAJAAMAAQAHAAIAAAAJAAQAAQAAAAAAAAAJAAUAAQAHAAIAAAAJAAcAAQAHAAIAAAAJAAgAAQAHAAIAAAAJAAoAAQAHAAIAAAAKAAAAAQAHAAIAAAAKAAEAAQAHAAIAAAAKAAIAAQAAAAAAAAAKAAMAAQAHAAIAAAAKAAQAAQAAAAAAAAAKAAUAAQAHAAIAAAAKAAcAAQAAAAAAAAAKAAgAAQAHAAIAAAAKAAkAAQAHAAIAAAAKAAoAAQAHAAIAAAALAAAAAQAHAAIAAAALAAEAAQAHAAIAAAALAAIAAQAAAAAAAAALAAMAAQAHAAIAAAALAAQAAQAAAAAAAAALAAUAAQAAAAAAAAALAAcAAQAAAAAAAAALAAgAAQAHAAIAAAALAAkAAQAHAAIAAAALAAoAAQAHAAIAAAAMAAAAAQAHAAIAAAAMAAEAAQABAAQAAAAMAAIAAQAHAAIAAAAMAAMAAQAHAAIAAAAMAAQAAQAAAAAAAAAMAAUAAQAAAAAAAAAMAAcAAQAAAAAAAAAMAAgAAQAHAAIAAAAMAAkAAQAHAAIAAAAMAAoAAQAHAAIAAAANAAAAAQAHAAIAAAANAAEAAQAAAAAAAAANAAIAAQAHAAIAAAANAAMAAQAHAAIAAAANAAQAAQAHAAIAAAANAAcAAQAAAAAAAAANAAgAAQAHAAIAAAANAAkAAQAHAAIAAAANAAoAAQAHAAIAAAAOAAAAAQAHAAIAAAAOAAEAAQAHAAIAAAAOAAIAAQAHAAIAAAAOAAMAAQAHAAIAAAAOAAQAAQACAAAAAAAOAAUAAQAHAAIAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAOAAgAAQAHAAIAAAAOAAkAAQAHAAIAAAAOAAoAAQAHAAIAAAAPAAAAAQAHAAIAAAAPAAEAAQAHAAIAAAAPAAIAAQAHAAIAAAAPAAMAAQAHAAIAAAAPAAQAAQAHAAIAAAAPAAUAAQAHAAIAAAAPAAYAAQAHAAIAAAAPAAcAAQAHAAIAAAAPAAgAAQAHAAIAAAAPAAkAAQAHAAIAAAAPAAoAAQAHAAIAAAAQAAAAAQAHAAIAAAAQAAEAAQAHAAIAAAAQAAIAAQAHAAIAAAAQAAMAAQAHAAIAAAAQAAQAAQAHAAIAAAAQAAUAAQAHAAIAAAAQAAYAAQAHAAIAAAAQAAcAAQAHAAIAAAAQAAgAAQAHAAIAAAAQAAkAAQAHAAIAAAAQAAoAAQAHAAIAAAARAAIAAQAHAAIAAAARAAMAAQAHAAIAAAARAAQAAQAHAAIAAAARAAUAAQAHAAIAAAARAAYAAQAHAAIAAAARAAcAAQAHAAIAAAARAAgAAQAHAAIAAAARAAkAAQAHAAIAAAARAAoAAQAHAAIAAAACAAYAAQABAAQAAAADAAYAAQAHAAIAAAAEAAYAAQAAAAAAAAAFAAYAAQAAAAAAAAAGAAYAAQAHAAIAAAAHAAYAAQAAAAAAAAAIAAYAAQAHAAIAAAAJAAYAAQAAAAUAAAAKAAYAAQAHAAIAAAALAAYAAQAAAAAAAAAMAAYAAQAAAAAAAAANAAYAAQAAAAAAAAANAAUAAQAAAAAAAAAIAAQAAQAAAAAAAAARAAAAAQAHAAIAAAARAAEAAQAHAAIAAAAJAAkAAQAHAAIAAAA=")
+tile_set = ExtResource("2_k1lo2")
+
+[node name="Wall" type="TileMapLayer" parent="GridController"]
+tile_map_data = PackedByteArray("AAAAAAAAAgAGAAEAAAABAAAAAgAHAAEAAAACAAAAAgAHAAEAAAAEAAAAAgAHAAEAAAAFAAAAAgAHAAEAAAAGAAAAAgAHAAEAAAAHAAAAAgAHAAEAAAAIAAAAAgAHAAEAAAAJAAAAAgAHAAEAAAAKAAAAAgAHAAEAAAALAAAAAgAHAAEAAAAMAAAAAgAHAAEAAAANAAAAAgAHAAEAAAAAAAEAAgAGAAIAAAAAAAIAAgAGAAIAAAAAAAMAAgAGAAIAAAAAAAQAAgAGAAIAAAAAAAYAAgAGAAIAAAAAAAUAAgAGAAIAAAAAAAcAAgAGAAIAAAAOAAAAAgAHAAEAAAADAAAAAgAHAAEAAAAAAAgAAgAGAAMAAAABAAgAAgAHAAMAAAACAAgAAgAHAAMAAAADAAgAAgAHAAMAAAAEAAgAAgAHAAMAAAAFAAgAAgAHAAMAAAAHAAgAAgAHAAMAAAAIAAgAAgAHAAMAAAAJAAgAAgAHAAMAAAAKAAgAAgAHAAMAAAALAAgAAgAHAAMAAAAMAAgAAgAHAAMAAAANAAgAAgAHAAMAAAAGAAgAAgAHAAMAAAAOAAgAAgAHAAMAAAAPAAAAAgAIAAEAAAAPAAEAAgAIAAEAAAAPAAIAAgAIAAIAAAAPAAMAAgAIAAIAAAAPAAQAAgAIAAIAAAAPAAUAAgAIAAIAAAAPAAYAAgAIAAIAAAAPAAcAAgAIAAIAAAAPAAgAAgAIAAMAAAA=")
+tile_set = SubResource("TileSet_j8xcc")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="GridController" instance=ExtResource("4_fxwaq")]
+position = Vector2(40, 80)
+
+[node name="Objects" type="Node2D" parent="GridController"]
+
+[node name="Notes" type="Node2D" parent="GridController"]
+
+[node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("5_ieji4")
+
+[node name="D" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("6_5r1mx")
+
+[node name="E" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("7_xrlyr")
+
+[node name="F" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("8_w4fvt")
+
+[node name="G" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("9_vq7i6")
+
+[node name="A" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("10_wlsj3")
+
+[node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("11_eks6v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 90)
