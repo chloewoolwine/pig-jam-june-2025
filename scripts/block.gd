@@ -56,6 +56,11 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 			#print("stopping moving, collision dir equals moving dir")
 			moving = false
 			direction = Vector2i.ZERO
+	if body is Block:
+		if (direction == collision_dir):
+			## TODO: inertia !
+			moving = false
+			direction = Vector2i.ZERO
 			
 func is_valid_dir_to_move(move_dir: Vector2i, collision_dir: Vector2i) -> bool:
 	#print("requested move direction: ", move_dir)
@@ -88,10 +93,10 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 		match floor:
 			Vector2i.ZERO:
 				pass
-			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0):
+			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0),  Vector2i(6,1), Vector2i(6,2), Vector2i(6,3), Vector2i(6,4), Vector2i(7,1), Vector2i(7,2), Vector2i(7,3), Vector2i(7,4):
 				block_hit_note.emit(floor, normalized_global()/Globals.TILE_SIZE)
 				pass
-			Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
+			Vector2i(0,1), Vector2i(0,2), Vector2i(0,3), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3), Vector2i(2,4), Vector2i(3,1), Vector2i(3,2), Vector2i(3,3), Vector2i(3,4),Vector2i(4,1), Vector2i(4,2), Vector2i(4,3), Vector2i(4,4), Vector2i(5,1), Vector2i(5,2), Vector2i(5,3), Vector2i(5,4):
 				# snow tile!!
 				# stop sliding !!
 				var movement_tween := create_tween()

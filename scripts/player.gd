@@ -34,19 +34,22 @@ var block_push_direction: Vector2
 
 var skating: bool # two modes- skating and walking
 
+var movement_tween: Tween
+
 func _ready() -> void:
 	start_position = global_position
 	accepting_input = true
 
 func reset() -> void: 
-	print("start position: ", start_position)
+	print("player start position: ", start_position)
 	global_position = start_position
 	moving = false
 	direction = Vector2i.ZERO
 	input_timer(.2)
 
 func _physics_process(delta: float) -> void:
-	_play_anim()
+	if !movement_tween:
+		play_skate_or_idle_anim()
 	if !moving:
 		global_position = global_position.snapped(Vector2(20,20))
 		if skate.playing:
@@ -57,15 +60,19 @@ func _physics_process(delta: float) -> void:
 			prev_direction = input
 			direction = input
 			skating = is_ice(get_floor_type_still())
+			if !skating:
+				#for snow->snow collisions
+				make_tween(floor_map)
+				
 			moving = true
 	else: 
 		var collision = self.move_and_collide(direction * slide_speed * delta)
 		#print("before ollision!! ")
+		#this should really only hit blocks
 		if collision:
 			moving = false
 			prev_direction = direction
 			direction = Vector2i.ZERO
-		#	print("collision")
 
 func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
 	await get_tree().create_timer(.1).timeout 
@@ -108,32 +115,22 @@ func immovable_block_at_space(targ: Vector2) -> bool:
 	return false
 	
 ##animation section
-func _play_anim() -> void: 
+func play_skate_or_idle_anim() -> void: 
 	if grid_controller.won_level:
 		return
 	if moving:
 		if skating:
 			if !skate.playing:
 				skate.play()
-			match direction:
-				Vector2i(1,0):
-					animated_sprite_2d.play("walk_right")
-				Vector2i(-1,0):
-					animated_sprite_2d.play("walk_left")
-				Vector2i(0,1):
-					animated_sprite_2d.play("skate_down")
-				Vector2i(0,-1):
-					animated_sprite_2d.play("skate_up")
-		else:
-			match direction:
-				Vector2i(1,0):
-					animated_sprite_2d.play("walk_right")
-				Vector2i(-1,0):
-					animated_sprite_2d.play("walk_left")
-				Vector2i(0,1):
-					animated_sprite_2d.play("skate_down")
-				Vector2i(0,-1):
-					animated_sprite_2d.play("skate_up")
+		match direction:
+			Vector2i(1,0):
+				animated_sprite_2d.play("walk_right")
+			Vector2i(-1,0):
+				animated_sprite_2d.play("walk_left")
+			Vector2i(0,1):
+				animated_sprite_2d.play("skate_down")
+			Vector2i(0,-1):
+				animated_sprite_2d.play("skate_up")
 	else:
 		match prev_direction:
 			Vector2i(1,0):
@@ -144,6 +141,17 @@ func _play_anim() -> void:
 				animated_sprite_2d.play("default")
 			Vector2i(0,-1):
 				animated_sprite_2d.play("idle_up")
+
+func play_step_anim() -> void: 
+	match direction:
+		Vector2i(1,0):
+			animated_sprite_2d.play("walk_right")
+		Vector2i(-1,0):
+			animated_sprite_2d.play("walk_left")
+		Vector2i(0,1):
+			animated_sprite_2d.play("skate_down")
+		Vector2i(0,-1):
+			animated_sprite_2d.play("skate_up")
 
 func play_win() -> void: 
 	animated_sprite_2d.play("win")
@@ -170,10 +178,33 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 	# collided with wall
 	if body is TileMapLayer:
 		#print("collided with tilemap in direction: ", collision_dir)
-		if (direction == collision_dir): #validate we are moving to the right
-			#print("stopping moving, collision dir equals moving dir")
-			moving = false
-			direction = Vector2i.ZERO
+		if body.name == "Wall":
+			if (direction == collision_dir): #validate we are moving to the right
+				#print("stopping moving, collision dir equals moving dir")
+				moving = false
+				direction = Vector2i.ZERO
+		elif body.name == "Floor":
+			if(!is_ice(get_floor_type_moving()) && !movement_tween):
+				#for ice->snow collisions
+				make_tween(body)
+
+func make_tween(body: TileMapLayer) -> void: 
+	skate.stop()
+	skating = false
+	movement_tween = create_tween()
+	var target:Vector2 
+	if(direction.x > 0 || direction.y > 0) || !moving:
+		target = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
+	else:
+		target = body.local_to_map(Vector2i(global_position)) * Globals.TILE_SIZE
+	movement_tween.tween_property(self, "global_position", target, walk_speed)
+	play_step_anim()
+	play_step()
+	await movement_tween.finished
+	prev_direction = direction
+	direction = Vector2.ZERO
+	movement_tween = null
+	moving = false
 
 func _on_floor_detector_body_entered(body: Node2D) -> void:
 	#print("hit music node")
@@ -183,22 +214,13 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 		match floor_type:
 			Vector2i.ZERO:
 				pass
-			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0):
+			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0),  Vector2i(6,1), Vector2i(6,2), Vector2i(6,3), Vector2i(6,4), Vector2i(7,1), Vector2i(7,2), Vector2i(7,3), Vector2i(7,4):
 				player_hit_note.emit(floor_type, get_floor_loc_moving())
 				pass
-			Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
-				var movement_tween := create_tween()
-				var target:Vector2 
-				if(direction.x > 0 || direction.y > 0) || !moving:
-					target = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
-				else:
-					target = body.local_to_map(Vector2i(global_position)) * Globals.TILE_SIZE
-				movement_tween.tween_property(self, "global_position", target, walk_speed)
-				moving = false
-				skate.stop()
-				play_step()
-				prev_direction = direction
-				direction = Vector2.ZERO
+			Vector2i(0,1), Vector2i(0,2), Vector2i(0,3), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3), Vector2i(2,4), Vector2i(3,1), Vector2i(3,2), Vector2i(3,3), Vector2i(3,4),Vector2i(4,1), Vector2i(4,2), Vector2i(4,3), Vector2i(4,4), Vector2i(5,1), Vector2i(5,2), Vector2i(5,3), Vector2i(5,4):
+				#this should rarely, if ever, happen
+				if !movement_tween:
+					make_tween(body)
 
 
 ## helpers 
@@ -220,6 +242,6 @@ func normalized_global() -> Vector2:
 
 func is_ice(floor_type: Vector2i) -> bool: # ice or snow
 	match floor_type:
-		Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
+		Vector2i(0,1), Vector2i(0,2), Vector2i(0,3), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3), Vector2i(2,4), Vector2i(3,1), Vector2i(3,2), Vector2i(3,3), Vector2i(3,4),Vector2i(4,1), Vector2i(4,2), Vector2i(4,3), Vector2i(4,4), Vector2i(5,1), Vector2i(5,2), Vector2i(5,3), Vector2i(5,4):
 			return false
 	return true

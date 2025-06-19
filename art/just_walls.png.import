@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2e2ljbklt7w2"
-path="res://.godot/imported/ice-3.png-d7f46f2485b4660b28eabbc5ba8938b3.ctex"
+uid="uid://cophe7p5w0g0s"
+path="res://.godot/imported/just_walls.png-cdb84fe67ce6d02e961d5768a525a1ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ice-3.png"
-dest_files=["res://.godot/imported/ice-3.png-d7f46f2485b4660b28eabbc5ba8938b3.ctex"]
+source_file="res://art/just_walls.png"
+dest_files=["res://.godot/imported/just_walls.png-cdb84fe67ce6d02e961d5768a525a1ca.ctex"]
 
 [params]
 
