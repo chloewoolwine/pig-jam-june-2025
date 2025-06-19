@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxapgv2t5ofsw"
+path="res://.godot/imported/env_notev2_c_low.wav-5ce7bf76f558eb53968ebb57e83d40f1.sample"
+
+[deps]
+
+source_file="res://sfx/env/notes v2/env_notev2_c_low.wav"
+dest_files=["res://.godot/imported/env_notev2_c_low.wav-5ce7bf76f558eb53968ebb57e83d40f1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

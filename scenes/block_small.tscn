@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://snsgbx84pu6f"]
+
+[ext_resource type="Script" uid="uid://b35ur3hvpeg1t" path="res://scripts/block.gd" id="1_dtk0t"]
+[ext_resource type="Texture2D" uid="uid://bgn5wxneg0bu2" path="res://art/Sprite-0001.png" id="2_yyulm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsidl"]
+size = Vector2(18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eata"]
+atlas = ExtResource("2_yyulm")
+region = Rect2(180, 60, 20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtk0t"]
+size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyulm"]
+size = Vector2(16, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dcre"]
+size = Vector2(1, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43cq4"]
+size = Vector2(16, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kl28v"]
+size = Vector2(6, 5)
+
+[node name="BlockSmall" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 4
+script = ExtResource("1_dtk0t")
+slide_speed = 100
+walk_speed = 0.5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_dsidl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_4eata")
+offset = Vector2(10, 10)
+
+[node name="LeftArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea"]
+position = Vector2(0.5, 10)
+shape = SubResource("RectangleShape2D_dtk0t")
+debug_color = Color(0.587108, 0.37832, 1, 0.42)
+
+[node name="UpArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpArea"]
+position = Vector2(10, 0.5)
+shape = SubResource("RectangleShape2D_yyulm")
+debug_color = Color(0.587108, 0.37832, 1, 0.42)
+
+[node name="RightArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea"]
+position = Vector2(19.5, 10)
+shape = SubResource("RectangleShape2D_0dcre")
+debug_color = Color(0.587108, 0.37832, 1, 0.42)
+
+[node name="DownArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownArea"]
+position = Vector2(10, 19.5)
+shape = SubResource("RectangleShape2D_43cq4")
+debug_color = Color(0.587108, 0.37832, 1, 0.42)
+
+[node name="FloorDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetector"]
+position = Vector2(10, 9.5)
+shape = SubResource("RectangleShape2D_kl28v")
+
+[connection signal="body_entered" from="LeftArea" to="." method="_on_left_area_body_entered"]
+[connection signal="body_entered" from="UpArea" to="." method="_on_up_area_body_entered"]
+[connection signal="body_entered" from="RightArea" to="." method="_on_right_area_body_entered"]
+[connection signal="body_entered" from="DownArea" to="." method="_on_down_area_body_entered"]
+[connection signal="body_entered" from="FloorDetector" to="." method="_on_floor_detector_body_entered"]

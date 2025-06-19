@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btoqjie2ww7eo"
+path="res://.godot/imported/env_notev2_e.wav-c2d3f442c14a56a258f4725d2abe7d6b.sample"
+
+[deps]
+
+source_file="res://sfx/env/notes v2/env_notev2_e.wav"
+dest_files=["res://.godot/imported/env_notev2_e.wav-c2d3f442c14a56a258f4725d2abe7d6b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
