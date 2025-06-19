@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=4 uid="uid://3wkss58u6gfo"]
+[gd_scene load_steps=8 format=4 uid="uid://3wkss58u6gfo"]
 
 [ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_0em5o"]
 [ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_ji3du"]
 [ext_resource type="Texture2D" uid="uid://cdly6ps0clrie" path="res://art/ice_5.png" id="3_qciod"]
-[ext_resource type="Script" uid="uid://ctwpvwngik6o4" path="res://scripts/player.gd" id="4_uyjbk"]
-[ext_resource type="Texture2D" uid="uid://bysmomx1t2mu6" path="res://art/skate_down_anim_2.png" id="5_l6vyr"]
-[ext_resource type="Texture2D" uid="uid://bugqwwmqogg68" path="res://art/ice-export.png" id="6_dct5u"]
+[ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_pwetd"]
+[ext_resource type="PackedScene" uid="uid://snsgbx84pu6f" path="res://scenes/block_small.tscn" id="5_p0aoh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j8kfm"]
 texture = ExtResource("3_qciod")
@@ -80,92 +79,6 @@ tile_size = Vector2i(20, 20)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_j8kfm")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2uu2"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(60, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8kfm"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(0, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_514gu"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(20, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q84ur"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(40, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fufjh"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(60, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmcxo"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(80, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_npbqr"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(100, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0ry2"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(120, 0, 20, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_81j1o"]
-atlas = ExtResource("5_l6vyr")
-region = Rect2(140, 0, 20, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_k0cb5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j2uu2")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j8kfm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_514gu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q84ur")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fufjh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmcxo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_npbqr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0ry2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_81j1o")
-}],
-"loop": true,
-"name": &"skate_down",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4f37"]
-atlas = ExtResource("6_dct5u")
-region = Rect2(0, 20, 20, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8xcc"]
-size = Vector2(19, 19)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3iuw"]
-size = Vector2(9.04156, 9.68997)
-
 [node name="Level" type="Node2D"]
 texture_filter = 1
 
@@ -183,40 +96,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAgAGAAEAAAABAAAAAgAHAAEAAAACAAAAAgAHAAE
 tile_set = SubResource("TileSet_j8xcc")
 metadata/_edit_lock_ = true
 
-[node name="Player" type="CharacterBody2D" parent="GridController"]
-z_index = 3
-position = Vector2(20, 100)
-script = ExtResource("4_uyjbk")
-slide_speed = 100
-walk_speed = 0.3
-metadata/_edit_group_ = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridController/Player"]
-sprite_frames = SubResource("SpriteFrames_k0cb5")
-autoplay = "default"
-offset = Vector2(10, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="GridController/Player"]
-visible = false
-texture = SubResource("AtlasTexture_l4f37")
-offset = Vector2(10, 10)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GridController/Player"]
-visible = false
-position = Vector2(9.5, 9.5)
-shape = SubResource("RectangleShape2D_j8xcc")
-
-[node name="TileDetector" type="Area2D" parent="GridController/Player"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GridController/Player/TileDetector"]
-visible = false
-position = Vector2(10, 9.5)
-scale = Vector2(0.663602, 0.722397)
-shape = SubResource("RectangleShape2D_m3iuw")
-debug_color = Color(0.623088, 0.351792, 1, 0.42)
-
 [node name="Notes" type="Node2D" parent="GridController"]
 
 [node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
@@ -233,7 +112,13 @@ debug_color = Color(0.623088, 0.351792, 1, 0.42)
 
 [node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
 
+[node name="Player" parent="GridController" instance=ExtResource("4_pwetd")]
+position = Vector2(40, 80)
+
+[node name="Objects" type="Node2D" parent="GridController"]
+
+[node name="BlockSmall" parent="GridController/Objects" instance=ExtResource("5_p0aoh")]
+position = Vector2(100, 100)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)
-
-[connection signal="body_entered" from="GridController/Player/TileDetector" to="GridController/Player" method="_on_area_2d_body_entered"]
