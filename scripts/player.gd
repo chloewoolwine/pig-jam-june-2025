@@ -59,11 +59,12 @@ func _physics_process(delta: float) -> void:
 		if input.x != 0 || input.y != 0:
 			prev_direction = input
 			direction = input
+			#print("floor type still ",get_floor_type_still())
+			#print("current pos: ", normalized_global()/Globals.TILE_SIZE)
 			skating = is_ice(get_floor_type_still())
 			if !skating:
 				#for snow->snow collisions
 				make_tween(floor_map)
-				
 			moving = true
 	else: 
 		var collision = self.move_and_collide(direction * slide_speed * delta)
@@ -71,6 +72,7 @@ func _physics_process(delta: float) -> void:
 		#this should really only hit blocks
 		if collision:
 			moving = false
+			skating = false
 			prev_direction = direction
 			direction = Vector2i.ZERO
 
@@ -111,6 +113,7 @@ func immovable_block_at_space(targ: Vector2) -> bool:
 	var node := grid_controller.get_object_at_space(targ) 
 	if node != null:
 		if node is Block:
+			print("node is block")
 			return !node.is_valid_dir_to_move((targ-global_position),((targ-global_position) * -1).normalized())
 	return false
 	
@@ -175,6 +178,7 @@ func _on_down_area_body_entered(body: Node2D) -> void:
 func handle_move(collision_dir: Vector2i, body: Node2D) -> void: 
 	if body is Block:
 		print("bloooock")
+		pass
 	# collided with wall
 	if body is TileMapLayer:
 		#print("collided with tilemap in direction: ", collision_dir)
@@ -189,22 +193,28 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 				make_tween(body)
 
 func make_tween(body: TileMapLayer) -> void: 
+	if (immovable_block_at_space(get_floor_type_still())):
+		moving = false
+		return
+	moving = true
 	skate.stop()
+	animated_sprite_2d.stop()
 	skating = false
 	movement_tween = create_tween()
-	var target:Vector2 
-	if(direction.x > 0 || direction.y > 0) || !moving:
-		target = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
-	else:
-		target = body.local_to_map(Vector2i(global_position)) * Globals.TILE_SIZE
+	var target:Vector2 = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
+	#print("target tile: ", target)
 	movement_tween.tween_property(self, "global_position", target, walk_speed)
 	play_step_anim()
 	play_step()
+	#print('tweein')
 	await movement_tween.finished
+	print('tween done')
 	prev_direction = direction
 	direction = Vector2.ZERO
 	movement_tween = null
 	moving = false
+	animated_sprite_2d.stop()
+	input_timer(.2)
 
 func _on_floor_detector_body_entered(body: Node2D) -> void:
 	#print("hit music node")
