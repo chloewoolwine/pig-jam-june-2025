@@ -60,11 +60,7 @@ func _physics_process(delta: float) -> void:
 			prev_direction = input
 			direction = input
 			var floor_dir := get_floor_type_still()
-			if is_snowy_floor(floor_dir):
-				## TODO check for blocks and obstacles 
-				move_to_center()
-			else:
-				skate.play()
+			skate.play()
 			moving = true
 			# align self with center
 	else: 
@@ -81,7 +77,6 @@ func _physics_process(delta: float) -> void:
 			if not movement_tween: # this is kinda hacky but this is a jam whatever
 				movement_tween = create_tween()
 				movement_tween.tween_property(self, "position", target_position, walk_speed)
-				play_step()
 			if position == target_position:
 				#print("target achieved")
 				moving = false
@@ -130,24 +125,6 @@ func immovable_block_at_space(targ: Vector2) -> bool:
 		if node is Block:
 			return !node.is_valid_dir_to_move((targ-global_position),((targ-global_position) * -1).normalized())
 	return false
-#
-#func _on_area_2d_body_entered(body: Node2D) -> void:
-	##print("hit music node")
-	#if body is TileMapLayer: 
-		#var floor_type := get_floor_type_moving()
-		##print(floor_type)
-		#match floor_type:
-			#Vector2i.ZERO:
-				#pass
-			#Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0):
-				#player_hit_note.emit(floor_type, get_floor_loc_moving())
-				#pass
-			#Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
-				## snow tile!!
-				## stop sliding !!
-				### TODO: check for collisions here 
-				#move_to_center()
-				#pass
 	
 ##animation section
 func _play_anim() -> void: 
@@ -245,7 +222,6 @@ func _on_down_area_body_entered(body: Node2D) -> void:
 	handle_move(Vector2i(0, 1), body)
 
 func handle_move(collision_dir: Vector2i, body: Node2D) -> void: 
-	# collided with wall
 	if body is Block:
 		print("bloooock")
 	# collided with wall
@@ -269,8 +245,14 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 				player_hit_note.emit(floor_type, get_floor_loc_moving())
 				pass
 			Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
-				# snow tile!!
-				# stop sliding !!
-				## TODO: check for collisions here 
-				move_to_center()
-				pass
+				var movement_tween := create_tween()
+				var target:Vector2 
+				if(direction.x > 0 || direction.y > 0) || !moving:
+					target = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
+				else:
+					target = body.local_to_map(Vector2i(global_position)) * Globals.TILE_SIZE
+				movement_tween.tween_property(self, "global_position", target, walk_speed)
+				moving = false
+				play_step()
+				prev_direction = direction
+				direction = Vector2.ZERO
