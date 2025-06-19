@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://3wkss58u6gfo"]
+[gd_scene load_steps=15 format=4 uid="uid://3wkss58u6gfo"]
 
 [ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_0em5o"]
 [ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_ji3du"]
 [ext_resource type="Texture2D" uid="uid://cdly6ps0clrie" path="res://art/ice_5.png" id="3_qciod"]
 [ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_pwetd"]
 [ext_resource type="PackedScene" uid="uid://snsgbx84pu6f" path="res://scenes/block_small.tscn" id="5_p0aoh"]
+[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="6_to8hy"]
+[ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="7_iiu27"]
+[ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="8_0i3pi"]
+[ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="9_a485w"]
+[ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="10_xcl8h"]
+[ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="11_wend8"]
+[ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="12_gqc01"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j8kfm"]
 texture = ExtResource("3_qciod")
@@ -96,22 +103,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAgAGAAEAAAABAAAAAgAHAAEAAAACAAAAAgAHAAE
 tile_set = SubResource("TileSet_j8xcc")
 metadata/_edit_lock_ = true
 
-[node name="Notes" type="Node2D" parent="GridController"]
-
-[node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="D" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="E" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="F" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="G" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="A" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
-[node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-
 [node name="Player" parent="GridController" instance=ExtResource("4_pwetd")]
 position = Vector2(40, 80)
 
@@ -119,6 +110,29 @@ position = Vector2(40, 80)
 
 [node name="BlockSmall" parent="GridController/Objects" instance=ExtResource("5_p0aoh")]
 position = Vector2(100, 100)
+
+[node name="Notes" type="Node2D" parent="GridController"]
+
+[node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("6_to8hy")
+
+[node name="D" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("7_iiu27")
+
+[node name="E" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("8_0i3pi")
+
+[node name="F" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("9_a485w")
+
+[node name="G" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("10_xcl8h")
+
+[node name="A" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("11_wend8")
+
+[node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
+stream = ExtResource("12_gqc01")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)

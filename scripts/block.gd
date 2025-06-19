@@ -15,6 +15,11 @@ signal block_hit_note(note: Vector2i, location: Vector2i)
 var moving: bool
 var direction: Vector2i
 
+var start_position: Vector2
+
+func _ready() -> void:
+	start_position = global_position
+	
 func _physics_process(delta: float) -> void:
 	if !moving:
 		global_position = global_position.snapped(Vector2(20,20))
@@ -101,3 +106,8 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 
 func normalized_global() -> Vector2:
 	return global_position + Vector2(10, 10) # should always be the exact center of the block
+
+func resent() -> void: 
+	global_position = start_position 
+	moving = false
+	direction = Vector2i.ZERO
