@@ -85,7 +85,7 @@ tile_size = Vector2i(20, 20)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_j8kfm")
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 texture_filter = 1
 
 [node name="GridController" type="Node2D" parent="."]
