@@ -218,7 +218,7 @@ position = Vector2(20, 100)
 [node name="Objects" type="Node2D" parent="GridController"]
 
 [node name="BlockSmall" parent="GridController/Objects" instance=ExtResource("17_04equ")]
-position = Vector2(100, 80)
+position = Vector2(100, 100)
 
 [node name="BlockSmall2" parent="GridController/Objects" instance=ExtResource("17_04equ")]
 position = Vector2(180, 120)

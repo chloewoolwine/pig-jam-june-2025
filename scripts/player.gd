@@ -29,15 +29,13 @@ var start_position: Vector2
 var moving: bool
 var prev_direction: Vector2i
 var direction : Vector2i
-var target_position: Vector2 # often inf
 
 var block_push_direction: Vector2
 
-var movement_tween: Tween
+var skating: bool # two modes- skating and walking
 
 func _ready() -> void:
 	start_position = global_position
-	target_position = Vector2.INF
 	accepting_input = true
 
 func reset() -> void: 
@@ -45,7 +43,6 @@ func reset() -> void:
 	global_position = start_position
 	moving = false
 	direction = Vector2i.ZERO
-	target_position = Vector2.INF
 	input_timer(.2)
 
 func _physics_process(delta: float) -> void:
@@ -59,32 +56,16 @@ func _physics_process(delta: float) -> void:
 		if input.x != 0 || input.y != 0:
 			prev_direction = input
 			direction = input
-			var floor_dir := get_floor_type_still()
-			skate.play()
+			skating = is_ice(get_floor_type_still())
 			moving = true
-			# align self with center
 	else: 
-		if target_position == Vector2.INF:
-			var collision = self.move_and_collide(direction * slide_speed * delta)
-			#print("before ollision!! ")
-			if collision:
-				moving = false
-				target_position = Vector2.INF
-				prev_direction = direction
-				direction = Vector2i.ZERO
-			#	print("collision")
-		else: # we have a target position, move to it
-			if not movement_tween: # this is kinda hacky but this is a jam whatever
-				movement_tween = create_tween()
-				movement_tween.tween_property(self, "position", target_position, walk_speed)
-			if position == target_position:
-				#print("target achieved")
-				moving = false
-				target_position = Vector2.INF
-				prev_direction = direction
-				direction = Vector2i.ZERO
-				movement_tween = null
-			#print("after ocvlisions!!")
+		var collision = self.move_and_collide(direction * slide_speed * delta)
+		#print("before ollision!! ")
+		if collision:
+			moving = false
+			prev_direction = direction
+			direction = Vector2i.ZERO
+		#	print("collision")
 
 func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
 	await get_tree().create_timer(.1).timeout 
@@ -131,7 +112,9 @@ func _play_anim() -> void:
 	if grid_controller.won_level:
 		return
 	if moving:
-		if movement_tween:
+		if skating:
+			if !skate.playing:
+				skate.play()
 			match direction:
 				Vector2i(1,0):
 					animated_sprite_2d.play("walk_right")
@@ -165,47 +148,7 @@ func _play_anim() -> void:
 func play_win() -> void: 
 	animated_sprite_2d.play("win")
 
-## helpers 
-
-## Gets the floor type IN THE DIRECTION player is facing 
-func get_floor_type_moving() -> Vector2i:
-	#print(tile_loc, " ", curr_position)
-	return floor_map.get_cell_atlas_coords(get_floor_loc_moving())
-
-func get_floor_loc_moving() -> Vector2i:
-	return (normalized_global()) /Globals.TILE_SIZE
-	
-func get_floor_type_still() -> Vector2i:
-	var curr_position:Vector2i = normalized_global()/Globals.TILE_SIZE
-	return floor_map.get_cell_atlas_coords(curr_position + direction)
-
-func move_to_center() -> void: 
-	var tile_loc:Vector2i
-	if(direction.x > 0 || direction.y > 0) || !moving:
-		tile_loc = floor_map.local_to_map(normalized_global()) + direction
-	else:
-		tile_loc = floor_map.local_to_map(normalized_global())
-	#check if there is a block living there!!! 
-	if !immovable_block_at_space(tile_loc * Globals.TILE_SIZE):
-		target_position = tile_loc * Globals.TILE_SIZE
-	#print("target_pos in move_to_center:", target_position)
-
-#returns true if v1 is Close Enough to v2 (within 3)
-func is_close_enough(v1: Vector2, v2:Vector2) -> bool:
-	if(v1 == v2):
-		return true
-	var sub:Vector2 = abs(v1 - v2)
-	if(sub.x < .1 || sub.y < .1):
-		return true
-	return false
-
-func is_snowy_floor(floor_loc: Vector2i) -> bool:
-	return floor_loc == Vector2i(1,4) || floor_loc == Vector2i(0,5) || floor_loc == Vector2i(0,6) || floor_loc == Vector2i(0,7) || floor_loc == Vector2i(2,6) || floor_loc == Vector2i(2,7) 
-
-func normalized_global() -> Vector2:
-	return global_position + Vector2(10, 10)
-
-
+## AREAS 
 func _on_left_area_body_entered(body: Node2D) -> void:
 	handle_move(Vector2i(-1, 0), body)
 
@@ -232,7 +175,6 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 			moving = false
 			direction = Vector2i.ZERO
 
-
 func _on_floor_detector_body_entered(body: Node2D) -> void:
 	#print("hit music node")
 	if body is TileMapLayer: 
@@ -253,6 +195,31 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 					target = body.local_to_map(Vector2i(global_position)) * Globals.TILE_SIZE
 				movement_tween.tween_property(self, "global_position", target, walk_speed)
 				moving = false
+				skate.stop()
 				play_step()
 				prev_direction = direction
 				direction = Vector2.ZERO
+
+
+## helpers 
+
+## Gets the floor type IN THE DIRECTION player is facing 
+func get_floor_type_moving() -> Vector2i:
+	#print(tile_loc, " ", curr_position)
+	return floor_map.get_cell_atlas_coords(get_floor_loc_moving())
+
+func get_floor_loc_moving() -> Vector2i:
+	return (normalized_global()) /Globals.TILE_SIZE
+	
+func get_floor_type_still() -> Vector2i:
+	var curr_position:Vector2i = normalized_global()/Globals.TILE_SIZE
+	return floor_map.get_cell_atlas_coords(curr_position + direction)
+
+func normalized_global() -> Vector2:
+	return global_position + Vector2(10, 10)
+
+func is_ice(floor_type: Vector2i) -> bool: # ice or snow
+	match floor_type:
+		Vector2i(1,4), Vector2i(0,5), Vector2i(0,6), Vector2i(0,7), Vector2i(2,6), Vector2i(2,7):
+			return false
+	return true
