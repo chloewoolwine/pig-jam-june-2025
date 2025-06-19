@@ -97,6 +97,6 @@ func play_win() -> void:
 func reset_all():
 	player.reset()
 	running_order.clear()
-	for o in objects:
+	for o in live_objects:
 		if o is Block:
 			o.resent()
