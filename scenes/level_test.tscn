@@ -213,7 +213,7 @@ tile_set = SubResource("TileSet_j8xcc")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="GridController" instance=ExtResource("5_0dj0t")]
-position = Vector2(20, 100)
+position = Vector2(220, 100)
 
 [node name="Objects" type="Node2D" parent="GridController"]
 
