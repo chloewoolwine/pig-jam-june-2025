@@ -342,7 +342,7 @@ metadata/_edit_group_ = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k0cb5")
 autoplay = "default"
-frame_progress = 0.759518
+frame_progress = 0.44007
 offset = Vector2(10, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
