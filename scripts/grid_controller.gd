@@ -95,8 +95,8 @@ func play_win() -> void:
 		play_note(correct_order[i], Vector2i.MIN);
 
 func reset_all():
-	player.reset()
+	player.reset()   
 	running_order.clear()
-	for o in objects:
+	for o in live_objects:
 		if o is Block:
 			o.resent()

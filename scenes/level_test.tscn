@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b5qcw0s0cuy4e"]
+[gd_scene load_steps=28 format=4 uid="uid://b5qcw0s0cuy4e"]
 
 [ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_yvmk3"]
 [ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_r2no1"]
@@ -10,8 +10,58 @@
 [ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="10_e0wnd"]
 [ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="11_n44uc"]
 [ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="12_nuslc"]
+[ext_resource type="Texture2D" uid="uid://b17wu25quu145" path="res://art/gui/GUI_tiles.png" id="13_0dj0t"]
 [ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="13_re6lg"]
 [ext_resource type="PackedScene" uid="uid://snsgbx84pu6f" path="res://scenes/block_small.tscn" id="17_04equ"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dj0t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0l5l"]
+atlas = ExtResource("13_0dj0t")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0dj0t"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0wnd"]
+atlas = SubResource("CompressedTexture2D_0dj0t")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w0l5l"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n44uc"]
+atlas = SubResource("CompressedTexture2D_w0l5l")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nuslc"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re6lg"]
+atlas = SubResource("CompressedTexture2D_nuslc")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e0wnd"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuslc"]
+atlas = SubResource("CompressedTexture2D_e0wnd")
+region = Rect2(20, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_re6lg"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pn8n"]
+atlas = SubResource("CompressedTexture2D_re6lg")
+region = Rect2(25, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n44uc"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnuhc"]
+atlas = SubResource("CompressedTexture2D_n44uc")
+region = Rect2(30, 0, 5, 5)
 
 [node name="Level" type="Node2D"]
 texture_filter = 1
@@ -31,7 +81,7 @@ tile_set = ExtResource("3_ddr63")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="GridController" instance=ExtResource("5_0dj0t")]
-position = Vector2(60, 80)
+position = Vector2(240, 80)
 
 [node name="Objects" type="Node2D" parent="GridController"]
 
@@ -72,6 +122,73 @@ stream = ExtResource("13_re6lg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 9.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dj0t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w0l5l")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_e0wnd")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_n44uc")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_re6lg")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nuslc")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1pn8n")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vnuhc")
+expand_mode = 3
+stretch_mode = 2
 
 [editable path="GridController/Objects/BlockSmall"]
 [editable path="GridController/Objects/BlockSmall2"]
