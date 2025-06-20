@@ -25,6 +25,7 @@ var live_objects: Array[Node2D]
 # tile location is unneccesary- hitboxes will be assigned in the tilemap and onBodyEnter will be written here
 
 func _ready() -> void:
+	player.player_died.connect(reset_all)
 	player.player_hit_note.connect(hit_note)
 	for o in objects.get_children(): 
 		live_objects.append(o)

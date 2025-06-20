@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="10_7byxv"]
 [ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_wck51"]
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 texture_filter = 1
 
 [node name="GridController" type="Node2D" parent="."]
