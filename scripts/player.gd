@@ -62,13 +62,15 @@ func _physics_process(delta: float) -> void:
 			direction = input
 			#print("floor type still ",get_floor_type_still())
 			#print("current pos: ", normalized_global()/Globals.TILE_SIZE)
-			skating = is_ice(get_floor_type_still())
+			skating = is_ice(get_floor_type())
 			if !skating:
 				#for snow->snow collisions
+				print('found in physics process??')
 				make_tween(floor_map)
 			moving = true
 	else: 
 		var collision = self.move_and_collide(direction * slide_speed * delta)
+		moving = true
 		#print("before ollision!! ")
 		#this should really only hit blocks
 		if collision:
@@ -108,16 +110,22 @@ func get_input() -> Vector2:
 
 ##animation and sounds
 func make_tween(body: TileMapLayer) -> void: 
-	if (immovable_block_at_space(get_floor_type_still())):
+	if (immovable_block_at_space(get_floor_type())):
 		moving = false
 		return
+	if movement_tween != null:
+		return
+	var target:Vector2
+	if (direction.y > 0 || direction.x > 0) || !moving:
+		target = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
+	else:
+		target = (body.local_to_map(Vector2i(global_position))) * Globals.TILE_SIZE
+	#print("target tile: ", target)
 	moving = true
+	skating = false
 	skate.stop()
 	animated_sprite_2d.stop()
-	skating = false
 	movement_tween = create_tween()
-	var target:Vector2 = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
-	#print("target tile: ", target)
 	movement_tween.tween_property(self, "global_position", target, walk_speed)
 	play_step_anim()
 	play_step()
@@ -204,24 +212,19 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 				#print("stopping moving, collision dir equals moving dir")
 				moving = false
 				direction = Vector2i.ZERO
-		elif body.name == "Floor":
-			if(!is_ice(get_floor_type_moving()) && !movement_tween):
-				#for ice->snow collisions
-				make_tween(body)
 
 func _on_floor_detector_body_entered(body: Node2D) -> void:
 	#print("hit music node")
 	if body is TileMapLayer: 
-		var floor_type := get_floor_type_moving()
+		var floor_type := get_floor_type()
 		#print(floor_type)
 		match floor_type:
 			Vector2i.ZERO:
 				pass
 			Vector2i(1,0), Vector2i(2,0), Vector2i(3,0), Vector2i(4,0), Vector2i(5,0), Vector2i(6,0), Vector2i(7,0),  Vector2i(6,1), Vector2i(6,2), Vector2i(6,3), Vector2i(6,4), Vector2i(7,1), Vector2i(7,2), Vector2i(7,3), Vector2i(7,4):
-				player_hit_note.emit(floor_type, get_floor_loc_moving())
+				player_hit_note.emit(floor_type, get_floor_type())
 				pass
 			Vector2i(0,1), Vector2i(0,2), Vector2i(0,3), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3), Vector2i(2,4), Vector2i(3,1), Vector2i(3,2), Vector2i(3,3), Vector2i(3,4),Vector2i(4,1), Vector2i(4,2), Vector2i(4,3), Vector2i(4,4), Vector2i(5,1), Vector2i(5,2), Vector2i(5,3), Vector2i(5,4):
-				#this should rarely, if ever, happen
 				if !movement_tween:
 					make_tween(body)
 			Vector2i(9,4):
@@ -230,9 +233,13 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 				pass
 ## helpers 
 
+func get_floor_type() -> Vector2i:
+	if moving:
+		return get_floor_type_moving()
+	return get_floor_type_still()
+
 ## Gets the floor type IN THE DIRECTION player is facing 
 func get_floor_type_moving() -> Vector2i:
-	#print(tile_loc, " ", curr_position)
 	return floor_map.get_cell_atlas_coords(get_floor_loc_moving())
 
 func get_floor_loc_moving() -> Vector2i:
@@ -243,7 +250,7 @@ func get_floor_type_still() -> Vector2i:
 	return floor_map.get_cell_atlas_coords(curr_position + direction)
 
 func normalized_global() -> Vector2:
-	return global_position + Vector2(10, 10)
+	return (global_position + Vector2(10, 10)).floor()
 
 func is_ice(floor_type: Vector2i) -> bool: # ice or snow
 	match floor_type:
