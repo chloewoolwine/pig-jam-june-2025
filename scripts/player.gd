@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal player_hit_note(note: Vector2i, location: Vector2i)
+signal player_died()
 
 @onready var grid_controller: GridController = $".."
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -76,9 +77,10 @@ func _physics_process(delta: float) -> void:
 			prev_direction = direction
 			direction = Vector2i.ZERO
 
-func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
-	await get_tree().create_timer(.1).timeout 
-	step.play()
+func die() -> void:
+	input_timer(1)
+	player_died.emit()
+	reset()
 
 # INPUT VALIDATORS
 func get_input() -> Vector2:
@@ -104,20 +106,31 @@ func get_input() -> Vector2:
 	
 	return input
 
-func input_timer(time:float) -> void: 
-	accepting_input = false
-	await get_tree().create_timer(time).timeout
-	accepting_input = true
-
-func immovable_block_at_space(targ: Vector2) -> bool:
-	var node := grid_controller.get_object_at_space(targ) 
-	if node != null:
-		if node is Block:
-			print("node is block")
-			return !node.is_valid_dir_to_move((targ-global_position),((targ-global_position) * -1).normalized())
-	return false
+##animation and sounds
+func make_tween(body: TileMapLayer) -> void: 
+	if (immovable_block_at_space(get_floor_type_still())):
+		moving = false
+		return
+	moving = true
+	skate.stop()
+	animated_sprite_2d.stop()
+	skating = false
+	movement_tween = create_tween()
+	var target:Vector2 = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
+	#print("target tile: ", target)
+	movement_tween.tween_property(self, "global_position", target, walk_speed)
+	play_step_anim()
+	play_step()
+	#print('tweein')
+	await movement_tween.finished
+	print('tween done')
+	prev_direction = direction
+	direction = Vector2.ZERO
+	movement_tween = null
+	moving = false
+	animated_sprite_2d.stop()
+	input_timer(.2)
 	
-##animation section
 func play_skate_or_idle_anim() -> void: 
 	if grid_controller.won_level:
 		return
@@ -159,6 +172,10 @@ func play_step_anim() -> void:
 func play_win() -> void: 
 	animated_sprite_2d.play("win")
 
+func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
+	await get_tree().create_timer(.1).timeout 
+	step.play()
+	
 ## AREAS 
 func _on_left_area_body_entered(body: Node2D) -> void:
 	handle_move(Vector2i(-1, 0), body)
@@ -192,30 +209,6 @@ func handle_move(collision_dir: Vector2i, body: Node2D) -> void:
 				#for ice->snow collisions
 				make_tween(body)
 
-func make_tween(body: TileMapLayer) -> void: 
-	if (immovable_block_at_space(get_floor_type_still())):
-		moving = false
-		return
-	moving = true
-	skate.stop()
-	animated_sprite_2d.stop()
-	skating = false
-	movement_tween = create_tween()
-	var target:Vector2 = (body.local_to_map(Vector2i(global_position)) + direction) * Globals.TILE_SIZE
-	#print("target tile: ", target)
-	movement_tween.tween_property(self, "global_position", target, walk_speed)
-	play_step_anim()
-	play_step()
-	#print('tweein')
-	await movement_tween.finished
-	print('tween done')
-	prev_direction = direction
-	direction = Vector2.ZERO
-	movement_tween = null
-	moving = false
-	animated_sprite_2d.stop()
-	input_timer(.2)
-
 func _on_floor_detector_body_entered(body: Node2D) -> void:
 	#print("hit music node")
 	if body is TileMapLayer: 
@@ -231,8 +224,10 @@ func _on_floor_detector_body_entered(body: Node2D) -> void:
 				#this should rarely, if ever, happen
 				if !movement_tween:
 					make_tween(body)
-
-
+			Vector2i(9,4):
+				## DIE 
+				die()
+				pass
 ## helpers 
 
 ## Gets the floor type IN THE DIRECTION player is facing 
@@ -255,3 +250,19 @@ func is_ice(floor_type: Vector2i) -> bool: # ice or snow
 		Vector2i(0,1), Vector2i(0,2), Vector2i(0,3), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3), Vector2i(2,4), Vector2i(3,1), Vector2i(3,2), Vector2i(3,3), Vector2i(3,4),Vector2i(4,1), Vector2i(4,2), Vector2i(4,3), Vector2i(4,4), Vector2i(5,1), Vector2i(5,2), Vector2i(5,3), Vector2i(5,4):
 			return false
 	return true
+
+func is_hole(floor_type: Vector2i) -> bool:
+	return floor_type == Vector2i(9,4)
+
+func input_timer(time:float) -> void: 
+	accepting_input = false
+	await get_tree().create_timer(time).timeout
+	accepting_input = true
+
+func immovable_block_at_space(targ: Vector2) -> bool:
+	var node := grid_controller.get_object_at_space(targ) 
+	if node != null:
+		if node is Block:
+			print("node is block")
+			return !node.is_valid_dir_to_move((targ-global_position),((targ-global_position) * -1).normalized())
+	return false
