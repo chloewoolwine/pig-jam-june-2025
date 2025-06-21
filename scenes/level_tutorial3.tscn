@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://0st6uwh7rma3"]
+[gd_scene load_steps=59 format=4 uid="uid://0st6uwh7rma3"]
 
+[ext_resource type="Script" uid="uid://qk5hghmid230" path="res://scripts/level.gd" id="1_dv5vw"]
 [ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_rr8q7"]
 [ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_qrgp1"]
 [ext_resource type="TileSet" uid="uid://no8fcexirfwv" path="res://scenes/resources/wall_set.tres" id="3_rr8q7"]
@@ -12,9 +13,160 @@
 [ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="9_l8sol"]
 [ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="10_7byxv"]
 [ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_wck51"]
+[ext_resource type="Script" uid="uid://nsj7vvfdvabt" path="res://scripts/gui.gd" id="14_73fov"]
+[ext_resource type="Texture2D" uid="uid://b17wu25quu145" path="res://art/gui/GUI_tiles.png" id="15_svwv5"]
+[ext_resource type="FontFile" uid="uid://canmgays3eakd" path="res://other/Silver.ttf" id="16_l8sol"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1pn8n"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgyyf"]
+atlas = SubResource("CompressedTexture2D_1pn8n")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_blca8"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsidl"]
+atlas = SubResource("CompressedTexture2D_blca8")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_04equ"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xcco"]
+atlas = SubResource("CompressedTexture2D_04equ")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6rn2f"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plnnl"]
+atlas = SubResource("CompressedTexture2D_6rn2f")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ow23l"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3svvi"]
+atlas = SubResource("CompressedTexture2D_ow23l")
+region = Rect2(20, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ljjji"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2uqe"]
+atlas = SubResource("CompressedTexture2D_ljjji")
+region = Rect2(25, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8xds8"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3511"]
+atlas = SubResource("CompressedTexture2D_8xds8")
+region = Rect2(30, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_agmvs"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0dm3"]
+atlas = SubResource("CompressedTexture2D_agmvs")
+region = Rect2(0, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tsxbx"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxjjy"]
+atlas = SubResource("CompressedTexture2D_tsxbx")
+region = Rect2(5, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4eata"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvo0l"]
+atlas = SubResource("CompressedTexture2D_4eata")
+region = Rect2(10, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xx2ma"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4yc4"]
+atlas = SubResource("CompressedTexture2D_xx2ma")
+region = Rect2(15, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hiasb"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trkkw"]
+atlas = SubResource("CompressedTexture2D_hiasb")
+region = Rect2(20, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ytvu"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tc6x"]
+atlas = SubResource("CompressedTexture2D_6ytvu")
+region = Rect2(25, 5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eykv8"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrmth"]
+atlas = SubResource("CompressedTexture2D_eykv8")
+region = Rect2(30, 5, 5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7byxv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wck51"]
+atlas = ExtResource("15_svwv5")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pugyt"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv4jm"]
+atlas = SubResource("CompressedTexture2D_pugyt")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gviip"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmyrl"]
+atlas = SubResource("CompressedTexture2D_gviip")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vqf4p"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw83s"]
+atlas = SubResource("CompressedTexture2D_vqf4p")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qsqmq"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dvt5"]
+atlas = SubResource("CompressedTexture2D_qsqmq")
+region = Rect2(20, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bwhcw"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyfjt"]
+atlas = SubResource("CompressedTexture2D_bwhcw")
+region = Rect2(25, 0, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u570v"]
+load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ki2"]
+atlas = SubResource("CompressedTexture2D_u570v")
+region = Rect2(30, 0, 5, 5)
 
 [node name="Level2" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_dv5vw")
 
 [node name="GridController" type="Node2D" parent="."]
 script = ExtResource("1_rr8q7")
@@ -63,3 +215,148 @@ stream = ExtResource("11_wck51")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_73fov")
+empty_boxes = Array[Texture]([SubResource("AtlasTexture_sgyyf"), SubResource("AtlasTexture_dsidl"), SubResource("AtlasTexture_4xcco"), SubResource("AtlasTexture_plnnl"), SubResource("AtlasTexture_3svvi"), SubResource("AtlasTexture_b2uqe"), SubResource("AtlasTexture_m3511")])
+filled_boxes = Array[Texture]([SubResource("AtlasTexture_m0dm3"), SubResource("AtlasTexture_pxjjy"), SubResource("AtlasTexture_vvo0l"), SubResource("AtlasTexture_x4yc4"), SubResource("AtlasTexture_trkkw"), SubResource("AtlasTexture_2tc6x"), SubResource("AtlasTexture_nrmth")])
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 9.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7byxv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="red" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wck51")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="orange" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_iv4jm")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="yellow" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lmyrl")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="green" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xw83s")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="blue" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1dvt5")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="purple" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jyfjt")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="pink" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_63ki2")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 9.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7byxv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer2/HBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("16_l8sol")
+text = "Level Whatever !!!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wck51")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_iv4jm")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lmyrl")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xw83s")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1dvt5")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jyfjt")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_63ki2")
+expand_mode = 3
+stretch_mode = 2

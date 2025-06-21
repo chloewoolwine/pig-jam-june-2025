@@ -1,6 +1,8 @@
 extends Node2D
 class_name GridController
 
+signal update_gui(reset: bool)
+
 @export var level_size: Vector2i
 @export var total_notes: int
 @export var note_order: Array[NOTES]
@@ -94,6 +96,7 @@ func play_note(note: int, _location: Vector2i) -> void:
 		pass
 # THIS DOES NOT WORK WITH > 7 NOTES
 func check_for_win(note: Vector2i) -> bool:
+	update_gui.emit(note.x != running_num)
 	if(note.x == running_num): #correct
 		running_num = running_num + 1
 	else:
