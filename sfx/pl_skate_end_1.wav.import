@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cm4ukmj7kgsjj"
-path="res://.godot/imported/pl_skate_end_1.wav-9ed73533aae787dac072af7834d4b353.sample"
+path="res://.godot/imported/pl_skate_end_1.wav-2ab1ae226198e8228d89f74a516a6281.sample"
 
 [deps]
 
-source_file="res://sfx/player/pl_skate_end_1.wav"
-dest_files=["res://.godot/imported/pl_skate_end_1.wav-9ed73533aae787dac072af7834d4b353.sample"]
+source_file="res://sfx/pl_skate_end_1.wav"
+dest_files=["res://.godot/imported/pl_skate_end_1.wav-2ab1ae226198e8228d89f74a516a6281.sample"]
 
 [params]
 
