@@ -2,6 +2,7 @@ extends Node2D
 class_name GridController
 
 signal update_gui(reset: bool)
+signal done()
 
 @export var level_size: Vector2i
 @export var total_notes: int
@@ -47,6 +48,7 @@ func _ready() -> void:
 		live_objects.append(o)
 		if o is Block:
 			o.block_hit_note.connect(hit_note)
+	player.done_celebrating.connect(done.emit)
 
 func get_object_at_space(global_pos: Vector2) -> Node2D:
 	for o in live_objects:
@@ -54,7 +56,7 @@ func get_object_at_space(global_pos: Vector2) -> Node2D:
 			return o
 	return null
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if(Input.is_action_pressed("reset")):
 		reset_all()
 

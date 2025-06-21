@@ -3,6 +3,7 @@ class_name Player
 
 signal player_hit_note(note: Vector2i, location: Vector2i)
 signal player_died()
+signal done_celebrating()
 
 @onready var grid_controller: GridController = $".."
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -208,10 +209,12 @@ func idle() -> void:
 
 func play_win() -> void: 
 	moving = false
-	movement_tween = null
+	if movement_tween != null:
+		await movement_tween.finished
 	direction = Vector2i.ZERO
 	animated_sprite_2d.play("win")
 	win.play()
+	win.finished.connect(done_celebrating.emit)
 
 func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
 	await get_tree().create_timer(.1).timeout 
