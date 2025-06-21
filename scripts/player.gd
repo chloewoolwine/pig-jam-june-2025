@@ -12,6 +12,9 @@ signal player_died()
 # sounds
 @onready var skate: AudioStreamPlayer2D = $SoundEffects/skate
 @onready var step: AudioStreamPlayer2D = $SoundEffects/step
+@onready var die_s: AudioStreamPlayer2D = $SoundEffects/die
+@onready var skate_end: AudioStreamPlayer2D = $SoundEffects/skate_end
+@onready var win: AudioStreamPlayer2D = $SoundEffects/win
 
 @onready var left_area: Area2D = $LeftArea
 @onready var up_area: Area2D = $UpArea
@@ -34,6 +37,7 @@ var direction : Vector2i
 var block_push_direction: Vector2
 
 var skating: bool # two modes- skating and walking
+var dying: bool
 
 var movement_tween: Tween
 
@@ -49,11 +53,12 @@ func reset() -> void:
 	input_timer(.2)
 
 func _physics_process(delta: float) -> void:
-	if !movement_tween:
+	if !movement_tween && !dying:
 		play_skate_or_idle_anim()
 	if !moving:
 		global_position = global_position.snapped(Vector2(20,20))
 		if skate.playing:
+			skate_end.play()
 			skate.stop()
 		var input := get_input()
 		block_push_direction = input
@@ -65,7 +70,7 @@ func _physics_process(delta: float) -> void:
 			skating = is_ice(get_floor_type())
 			if !skating:
 				#for snow->snow collisions
-				print('found in physics process??')
+				#print('found in physics process??')
 				make_tween(floor_map)
 			moving = true
 	else: 
@@ -80,9 +85,21 @@ func _physics_process(delta: float) -> void:
 			direction = Vector2i.ZERO
 
 func die() -> void:
-	input_timer(1)
+	dying = true
+	moving = false
+	movement_tween = null
+	if skate.playing:
+		skate_end.play()
+		skate.stop()
+	if step.playing:
+		step.stop()
+	animated_sprite_2d.play("die")
+	input_timer(2)
+	die_s.play()
+	await get_tree().create_timer(1.8).timeout
 	player_died.emit()
 	reset()
+	dying = false
 
 # INPUT VALIDATORS
 func get_input() -> Vector2:
@@ -123,6 +140,7 @@ func make_tween(body: TileMapLayer) -> void:
 	#print("target tile: ", target)
 	moving = true
 	skating = false
+	skate_end.play()
 	skate.stop()
 	animated_sprite_2d.stop()
 	movement_tween = create_tween()
@@ -131,7 +149,7 @@ func make_tween(body: TileMapLayer) -> void:
 	play_step()
 	#print('tweein')
 	await movement_tween.finished
-	print('tween done')
+	#print('tween done')
 	prev_direction = direction
 	direction = Vector2.ZERO
 	movement_tween = null
@@ -177,8 +195,23 @@ func play_step_anim() -> void:
 		Vector2i(0,-1):
 			animated_sprite_2d.play("skate_up")
 
+func idle() -> void: 
+	match prev_direction:
+		Vector2i(1,0):
+			animated_sprite_2d.play("idle_right")
+		Vector2i(-1,0):
+			animated_sprite_2d.play("idle_left")
+		Vector2i(0,1):
+			animated_sprite_2d.play("default")
+		Vector2i(0,-1):
+			animated_sprite_2d.play("idle_up")
+
 func play_win() -> void: 
+	moving = false
+	movement_tween = null
+	direction = Vector2i.ZERO
 	animated_sprite_2d.play("win")
+	win.play()
 
 func play_step() -> void: #TODO this is dumb just sync it up to the walk when we have it 
 	await get_tree().create_timer(.1).timeout 
