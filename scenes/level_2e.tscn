@@ -1,21 +1,21 @@
-[gd_scene load_steps=59 format=4 uid="uid://bkciqmeqj3hm6"]
+[gd_scene load_steps=59 format=4 uid="uid://dn41xv7casr7m"]
 
-[ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_63mlc"]
-[ext_resource type="Script" uid="uid://qk5hghmid230" path="res://scripts/level.gd" id="1_e8su4"]
-[ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_4dthm"]
-[ext_resource type="TileSet" uid="uid://no8fcexirfwv" path="res://scenes/resources/wall_set.tres" id="3_ahdht"]
-[ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_o6e25"]
-[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="5_1l4d1"]
-[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://sfx/env/notes v2/env_notev2_c_high.wav" id="6_4dthm"]
-[ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="6_e8su4"]
-[ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="7_56h75"]
-[ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="8_jjlxy"]
-[ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="9_t68ev"]
-[ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="10_hbb1u"]
-[ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_d84mx"]
-[ext_resource type="Script" uid="uid://nsj7vvfdvabt" path="res://scripts/gui.gd" id="14_56h75"]
-[ext_resource type="Texture2D" uid="uid://b17wu25quu145" path="res://art/gui/GUI_tiles.png" id="15_jjlxy"]
-[ext_resource type="FontFile" uid="uid://canmgays3eakd" path="res://other/Silver.ttf" id="16_t68ev"]
+[ext_resource type="Script" uid="uid://qk5hghmid230" path="res://scripts/level.gd" id="1_apdqj"]
+[ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="2_l55j7"]
+[ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="3_21txt"]
+[ext_resource type="TileSet" uid="uid://no8fcexirfwv" path="res://scenes/resources/wall_set.tres" id="4_vddjf"]
+[ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="5_0ynh1"]
+[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="6_tyeku"]
+[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://sfx/env/notes v2/env_notev2_c_high.wav" id="7_kiblk"]
+[ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="8_elgxx"]
+[ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="9_lf2i1"]
+[ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="10_mntxn"]
+[ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="11_ndpge"]
+[ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="12_j3naf"]
+[ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="13_nemui"]
+[ext_resource type="Script" uid="uid://nsj7vvfdvabt" path="res://scripts/gui.gd" id="14_k32bw"]
+[ext_resource type="Texture2D" uid="uid://b17wu25quu145" path="res://art/gui/GUI_tiles.png" id="15_kt504"]
+[ext_resource type="FontFile" uid="uid://canmgays3eakd" path="res://other/Silver.ttf" id="16_f5vc5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1pn8n"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
@@ -115,103 +115,103 @@ load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b67
 atlas = SubResource("CompressedTexture2D_eykv8")
 region = Rect2(30, 5, 5, 5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbb1u"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh6po"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d84mx"]
-atlas = ExtResource("15_jjlxy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5baq"]
+atlas = ExtResource("15_kt504")
 region = Rect2(0, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xq6jr"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wx5di"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r551"]
-atlas = SubResource("CompressedTexture2D_xq6jr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mstju"]
+atlas = SubResource("CompressedTexture2D_wx5di")
 region = Rect2(5, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_onouy"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_roej2"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4w0kk"]
-atlas = SubResource("CompressedTexture2D_onouy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b13w1"]
+atlas = SubResource("CompressedTexture2D_roej2")
 region = Rect2(10, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rdvmb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dandf"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkhuo"]
-atlas = SubResource("CompressedTexture2D_rdvmb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_odia1"]
+atlas = SubResource("CompressedTexture2D_dandf")
 region = Rect2(15, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i5j2u"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cd34e"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y45jp"]
-atlas = SubResource("CompressedTexture2D_i5j2u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpjya"]
+atlas = SubResource("CompressedTexture2D_cd34e")
 region = Rect2(20, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vuqah"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3cjxb"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhtas"]
-atlas = SubResource("CompressedTexture2D_vuqah")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c3cn"]
+atlas = SubResource("CompressedTexture2D_3cjxb")
 region = Rect2(25, 0, 5, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_paqix"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okye3"]
 load_path = "res://.godot/imported/GUI_tiles.png-a589517e63fe4d7227b2f6ed8793b673.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6or07"]
-atlas = SubResource("CompressedTexture2D_paqix")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvc4c"]
+atlas = SubResource("CompressedTexture2D_okye3")
 region = Rect2(30, 0, 5, 5)
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_e8su4")
+script = ExtResource("1_apdqj")
 
 [node name="GridController" type="Node2D" parent="."]
-script = ExtResource("1_63mlc")
+script = ExtResource("2_l55j7")
 level_size = Vector2i(14, 7)
-total_notes = 13
+total_notes = 7
 
 [node name="Floor" type="TileMapLayer" parent="GridController"]
-tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAUAAgAFAAQAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAABAAgAAgAAAAAAAAABAAkAAgAAAAAAAAABAAoAAgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAcAAgAAAAAAAAACAAgAAgAAAAAAAAACAAkAAgAAAAAAAAACAAoAAgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAcAAgAAAAAAAAADAAgAAgAAAAAAAAADAAkAAgAAAAAAAAADAAoAAgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgACAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAFAAQAAAAEAAUAAgAAAAAAAAAEAAcAAgAAAAAAAAAEAAgAAgAAAAAAAAAEAAkAAgAAAAAAAAAEAAoAAgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAcAAgAAAAAAAAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAFAAoAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAFAAQAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAcAAgAAAAAAAAAGAAgAAgAAAAAAAAAGAAkAAgAAAAAAAAAGAAoAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAcAAgAAAAAAAAAHAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAHAAoAAgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAEAAAAAAAIAAMAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAcAAgAAAAAAAAAIAAgAAgAAAAAAAAAIAAkAAgAAAAAAAAAIAAoAAgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAcAAgAAAAAAAAAJAAgAAgAAAAAAAAAJAAoAAgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAFAAQAAAAKAAQAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAcAAgAAAAAAAAAKAAgAAgAAAAAAAAAKAAkAAgAAAAAAAAAKAAoAAgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAAAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAcAAgAAAAAAAAALAAgAAgAAAAAAAAALAAkAAgAAAAAAAAALAAoAAgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAGAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAcAAgAAAAAAAAAMAAgAAgAAAAAAAAAMAAkAAgAAAAAAAAAMAAoAAgAAAAAAAAANAAAAAgAAAAAAAAANAAEAAgAAAAAAAAANAAIAAgAAAAAAAAANAAMAAgAAAAAAAAANAAQAAgACAAQAAAANAAcAAgAAAAAAAAANAAgAAgAAAAAAAAANAAkAAgAAAAAAAAANAAoAAgAAAAAAAAAOAAAAAgAAAAAAAAAOAAEAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAMAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAUAAgAAAAAAAAAOAAYAAgAHAAAAAAAOAAcAAgAAAAAAAAAOAAgAAgAAAAAAAAAOAAkAAgAAAAAAAAAOAAoAAgAAAAAAAAAPAAAAAgAAAAAAAAAPAAEAAgAAAAAAAAAPAAIAAgAAAAAAAAAPAAMAAgAAAAAAAAAPAAQAAgAAAAAAAAAPAAUAAgAAAAAAAAAPAAYAAgAAAAAAAAAPAAcAAgAAAAAAAAAPAAgAAgAAAAAAAAAPAAkAAgAAAAAAAAAPAAoAAgAAAAAAAAAQAAAAAgAAAAAAAAAQAAEAAgAAAAAAAAAQAAIAAgAAAAAAAAAQAAMAAgAAAAAAAAAQAAQAAgAAAAAAAAAQAAUAAgAAAAAAAAAQAAYAAgAAAAAAAAAQAAcAAgAAAAAAAAAQAAgAAgAAAAAAAAAQAAkAAgAAAAAAAAAQAAoAAgAAAAAAAAARAAIAAgAAAAAAAAARAAMAAgAAAAAAAAARAAQAAgAAAAAAAAARAAUAAgAAAAAAAAARAAYAAgAAAAAAAAARAAcAAgAAAAAAAAARAAgAAgAAAAAAAAARAAkAAgAAAAAAAAARAAoAAgAAAAAAAAACAAYAAgABAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAGAAYAAgADAAAAAAAHAAYAAgAAAAAAAAAIAAYAAgAAAAAAAAAJAAYAAgAAAAAAAAAKAAYAAgAFAAAAAAALAAYAAgAFAAQAAAAMAAYAAgAAAAAAAAANAAYAAgAAAAAAAAANAAUAAgAAAAAAAAAIAAQAAgAFAAQAAAARAAAAAgAAAAAAAAARAAEAAgAAAAAAAAAJAAkAAgAAAAAAAAABAAQAAgAAAAAAAAA=")
-tile_set = ExtResource("2_4dthm")
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAABAAgAAgAAAAAAAAABAAkAAgAAAAAAAAABAAoAAgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAcAAgAHAAAAAAACAAgAAgAAAAAAAAACAAkAAgAAAAAAAAACAAoAAgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgACAAMAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAcAAgAAAAAAAAADAAgAAgAAAAAAAAADAAkAAgAAAAAAAAADAAoAAgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAEAAMAAAAEAAIAAgAGAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAcAAgAJAAQAAAAEAAgAAgAAAAAAAAAEAAkAAgAAAAAAAAAEAAoAAgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgABAAAAAAAFAAUAAgAAAAAAAAAFAAcAAgAAAAAAAAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAFAAoAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAFAAQAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAcAAgAAAAAAAAAGAAgAAgAAAAAAAAAGAAkAAgAAAAAAAAAGAAoAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAJAAQAAAAHAAcAAgAAAAAAAAAHAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAHAAoAAgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAFAAAAAAAIAAMAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAcAAgAAAAAAAAAIAAgAAgAAAAAAAAAIAAkAAgAAAAAAAAAIAAoAAgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAcAAgAAAAAAAAAJAAgAAgAAAAAAAAAJAAoAAgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAUAAgADAAAAAAAKAAcAAgAAAAAAAAAKAAgAAgAAAAAAAAAKAAkAAgAAAAAAAAAKAAoAAgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAEAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAcAAgAAAAAAAAALAAgAAgAAAAAAAAALAAkAAgAAAAAAAAALAAoAAgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAcAAgAAAAAAAAAMAAgAAgAAAAAAAAAMAAkAAgAAAAAAAAAMAAoAAgAAAAAAAAANAAAAAgAAAAAAAAANAAEAAgAAAAAAAAANAAIAAgAAAAAAAAANAAMAAgAAAAAAAAANAAQAAgAAAAAAAAANAAcAAgACAAEAAAANAAgAAgAAAAAAAAANAAkAAgAAAAAAAAANAAoAAgAAAAAAAAAOAAAAAgAAAAAAAAAOAAEAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAMAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAUAAgACAAQAAAAOAAYAAgAAAAAAAAAOAAcAAgADAAEAAAAOAAgAAgAAAAAAAAAOAAkAAgAAAAAAAAAOAAoAAgAAAAAAAAAPAAAAAgAAAAAAAAAPAAEAAgAAAAAAAAAPAAIAAgAAAAAAAAAPAAMAAgAAAAAAAAAPAAQAAgAAAAAAAAAPAAUAAgAAAAAAAAAPAAYAAgAAAAAAAAAPAAcAAgAAAAAAAAAPAAgAAgAAAAAAAAAPAAkAAgAAAAAAAAAPAAoAAgAAAAAAAAAQAAAAAgAAAAAAAAAQAAEAAgAAAAAAAAAQAAIAAgAAAAAAAAAQAAMAAgAAAAAAAAAQAAQAAgAAAAAAAAAQAAUAAgAAAAAAAAAQAAYAAgAAAAAAAAAQAAcAAgAAAAAAAAAQAAgAAgAAAAAAAAAQAAkAAgAAAAAAAAAQAAoAAgAAAAAAAAARAAIAAgAAAAAAAAARAAMAAgAAAAAAAAARAAQAAgAAAAAAAAARAAUAAgAAAAAAAAARAAYAAgAAAAAAAAARAAcAAgAAAAAAAAARAAgAAgAAAAAAAAARAAkAAgAAAAAAAAARAAoAAgAAAAAAAAACAAYAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAHAAYAAgACAAAAAAAIAAYAAgAAAAAAAAAJAAYAAgAAAAAAAAAKAAYAAgAAAAAAAAALAAYAAgAAAAAAAAAMAAYAAgAAAAAAAAANAAYAAgAAAAAAAAANAAUAAgAAAAAAAAAIAAQAAgAAAAAAAAARAAAAAgAAAAAAAAARAAEAAgAAAAAAAAAJAAkAAgAAAAAAAAABAAQAAgAAAAAAAAA=")
+tile_set = ExtResource("3_21txt")
 
 [node name="Wall" type="TileMapLayer" parent="GridController"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAHAAEAAAABAAAAAQAIAAEAAAACAAAAAQAIAAEAAAAEAAAAAQAIAAEAAAAFAAAAAQABAAEAAAAGAAAAAQABAAIAAAAHAAAAAQAIAAEAAAAJAAAAAQAFAAIAAAAKAAAAAQABAAIAAAALAAAAAQABAAIAAAAMAAAAAQABAAIAAAANAAAAAQAFAAIAAAAAAAEAAQAHAAIAAAAAAAIAAQAHAAIAAAAAAAMAAQACAAEAAAAAAAQAAQAHAAIAAAAAAAYAAQAHAAIAAAAAAAUAAQACAAEAAAAAAAcAAQAHAAIAAAAOAAAAAQABAAEAAAADAAAAAQABAAIAAAAAAAgAAQAHAAMAAAABAAgAAQAIAAMAAAACAAgAAQAIAAMAAAADAAgAAQABAAEAAAAEAAgAAQABAAAAAAAFAAgAAQAIAAMAAAAHAAgAAQAFAAIAAAAIAAgAAQABAAAAAAAJAAgAAQABAAAAAAAKAAgAAQAIAAMAAAALAAgAAQAFAAIAAAAMAAgAAQAIAAMAAAANAAgAAQAIAAMAAAAGAAgAAQABAAAAAAAOAAgAAQABAAEAAAAPAAAAAQABAAEAAAAPAAEAAQABAAEAAAAPAAIAAQABAAEAAAAPAAMAAQABAAEAAAAPAAQAAQABAAEAAAAPAAUAAQAAAAEAAAAPAAYAAQAJAAIAAAAPAAcAAQABAAEAAAAPAAgAAQABAAEAAAAIAAAAAQABAAIAAAAFAAEAAQAFAAMAAAADAAcAAQAFAAEAAAAHAAcAAQAFAAEAAAALAAcAAQAFAAEAAAAJAAEAAQAFAAMAAAANAAEAAQAAAAIAAAAOAAcAAQAAAAAAAAAOAAEAAQABAAEAAAAOAAIAAQAAAAEAAAAOAAMAAQAAAAEAAAAOAAQAAQAAAAIAAAA=")
-tile_set = ExtResource("3_ahdht")
+tile_map_data = PackedByteArray("AAAAAAAAAQAHAAEAAAABAAAAAQAIAAEAAAACAAAAAQAIAAEAAAAEAAAAAQAIAAEAAAAFAAAAAQABAAIAAAAGAAAAAQAIAAEAAAAHAAAAAQAIAAEAAAAIAAAAAQAIAAEAAAAJAAAAAQABAAEAAAAKAAAAAQABAAIAAAALAAAAAQAIAAEAAAAMAAAAAQAIAAEAAAANAAAAAQABAAIAAAAAAAEAAQAHAAIAAAAAAAIAAQAHAAIAAAAAAAMAAQACAAEAAAAAAAQAAQAHAAIAAAAAAAYAAQAHAAIAAAAAAAUAAQACAAEAAAAAAAcAAQAHAAIAAAAOAAAAAQAIAAEAAAADAAAAAQABAAIAAAAAAAgAAQAHAAMAAAABAAgAAQAIAAMAAAACAAgAAQAIAAMAAAADAAgAAQAIAAMAAAAEAAgAAQAIAAMAAAAFAAgAAQABAAEAAAAHAAgAAQABAAAAAAAIAAgAAQABAAAAAAAJAAgAAQABAAAAAAAKAAgAAQAIAAMAAAALAAgAAQAIAAMAAAAMAAgAAQAIAAMAAAANAAgAAQAIAAMAAAAGAAgAAQABAAAAAAAOAAgAAQABAAAAAAAPAAAAAQAJAAEAAAAPAAEAAQAJAAIAAAAPAAIAAQAJAAIAAAAPAAQAAQAJAAIAAAAPAAUAAQAAAAEAAAAPAAYAAQAJAAIAAAAPAAcAAQAAAAEAAAAPAAgAAQAJAAMAAAAPAAMAAQAJAAIAAAAEAAQAAQADAAMAAAAFAAcAAQADAAAAAAAJAAEAAQAFAAMAAAANAAIAAQADAAMAAAA=")
+tile_set = ExtResource("4_vddjf")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="GridController" instance=ExtResource("4_o6e25")]
-position = Vector2(20, 20)
+[node name="Player" parent="GridController" instance=ExtResource("5_0ynh1")]
+position = Vector2(140, 80)
 
 [node name="Objects" type="Node2D" parent="GridController"]
 
 [node name="Notes" type="Node2D" parent="GridController"]
 
 [node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("5_1l4d1")
+stream = ExtResource("6_tyeku")
 
 [node name="C_high" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("6_4dthm")
+stream = ExtResource("7_kiblk")
 
 [node name="D" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("6_e8su4")
+stream = ExtResource("8_elgxx")
 
 [node name="E" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("7_56h75")
+stream = ExtResource("9_lf2i1")
 
 [node name="F" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("8_jjlxy")
+stream = ExtResource("10_mntxn")
 
 [node name="G" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("9_t68ev")
+stream = ExtResource("11_ndpge")
 
 [node name="A" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("10_hbb1u")
+stream = ExtResource("12_j3naf")
 
 [node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("11_d84mx")
+stream = ExtResource("13_nemui")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)
@@ -221,7 +221,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("14_56h75")
+script = ExtResource("14_k32bw")
 empty_boxes = Array[Texture]([SubResource("AtlasTexture_sgyyf"), SubResource("AtlasTexture_dsidl"), SubResource("AtlasTexture_4xcco"), SubResource("AtlasTexture_plnnl"), SubResource("AtlasTexture_3svvi"), SubResource("AtlasTexture_b2uqe"), SubResource("AtlasTexture_m3511")])
 filled_boxes = Array[Texture]([SubResource("AtlasTexture_m0dm3"), SubResource("AtlasTexture_pxjjy"), SubResource("AtlasTexture_vvo0l"), SubResource("AtlasTexture_x4yc4"), SubResource("AtlasTexture_trkkw"), SubResource("AtlasTexture_2tc6x"), SubResource("AtlasTexture_nrmth")])
 
@@ -231,7 +231,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 57.0
 offset_bottom = 9.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_hbb1u")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wh6po")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 layout_mode = 2
@@ -246,43 +246,43 @@ theme_override_constants/separation = 3
 
 [node name="red" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_d84mx")
+texture = SubResource("AtlasTexture_e5baq")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="orange" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1r551")
+texture = SubResource("AtlasTexture_mstju")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="yellow" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_4w0kk")
+texture = SubResource("AtlasTexture_b13w1")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="green" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_fkhuo")
+texture = SubResource("AtlasTexture_odia1")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="blue" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_y45jp")
+texture = SubResource("AtlasTexture_fpjya")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="purple" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_bhtas")
+texture = SubResource("AtlasTexture_2c3cn")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="pink" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6or07")
+texture = SubResource("AtlasTexture_lvc4c")
 expand_mode = 3
 stretch_mode = 2
 
@@ -293,7 +293,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 57.0
 offset_bottom = 9.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_hbb1u")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wh6po")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2"]
 layout_mode = 2
@@ -302,7 +302,7 @@ layout_mode = 2
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("16_t68ev")
+theme_override_fonts/normal_font = ExtResource("16_f5vc5")
 text = "Level Whatever !!!"
 fit_content = true
 scroll_active = false
@@ -321,42 +321,42 @@ theme_override_constants/separation = 3
 
 [node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_d84mx")
+texture = SubResource("AtlasTexture_e5baq")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1r551")
+texture = SubResource("AtlasTexture_mstju")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_4w0kk")
+texture = SubResource("AtlasTexture_b13w1")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_fkhuo")
+texture = SubResource("AtlasTexture_odia1")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_y45jp")
+texture = SubResource("AtlasTexture_fpjya")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect6" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_bhtas")
+texture = SubResource("AtlasTexture_2c3cn")
 expand_mode = 3
 stretch_mode = 2
 
 [node name="TextureRect7" type="TextureRect" parent="Control/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6or07")
+texture = SubResource("AtlasTexture_lvc4c")
 expand_mode = 3
 stretch_mode = 2
