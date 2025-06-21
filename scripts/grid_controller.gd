@@ -63,6 +63,9 @@ func hit_note(note: Vector2i, location: Vector2i) -> void:
 		check_for_win(note) 
 
 func play_note(note: int, _location: Vector2i) -> void:
+	if note_order.is_empty():
+		c.play()
+		return
 	# maybe do a cute animation here inthe future, thats why location is here
 	# dont have the sounds yet at all 
 	# there IS a better way to do this but i didn't do that. So. 
