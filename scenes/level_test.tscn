@@ -185,7 +185,7 @@ tile_set = ExtResource("3_ddr63")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="GridController" instance=ExtResource("5_0dj0t")]
-position = Vector2(200, 60)
+position = Vector2(100, 80)
 
 [node name="Objects" type="Node2D" parent="GridController"]
 
