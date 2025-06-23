@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_x704t"]
 [ext_resource type="PackedScene" uid="uid://bchhbhmr62pmm" path="res://scenes/control.tscn" id="14_l0k5h"]
 
-[node name="Level2" type="Node2D"]
+[node name="Level3" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_htdqn")
 

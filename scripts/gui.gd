@@ -22,6 +22,8 @@ class_name GUI
 var note_textures: Array[TextureRect]
 #var big_textures: Array[TextureRect]
 
+var correct_colors: Array[GridController.COLOR]
+
 var total_notes: int
 var curr_note: int 
 
@@ -53,6 +55,7 @@ func set_total(total: int, color_order: Array[GridController.COLOR]) -> void:
 	little.texture = empty_boxes[color_order[0]]
 	total_notes = total
 	note_textures.append(little)
+	correct_colors = color_order
 	for x in range(1, total_notes):
 		var new = little.duplicate()
 		new.texture = empty_boxes[color_order[x]]
@@ -69,9 +72,9 @@ func update(reset: bool) -> void:
 func _reset() -> void: 
 	curr_note = 0
 	for x in note_textures.size():
-		note_textures[x].texture = empty_boxes[x] 
+		note_textures[x].texture = empty_boxes[correct_colors[x]]
 
 func _hit_note() -> void: 
 	if curr_note < note_textures.size():
-		note_textures[curr_note].texture = filled_boxes[curr_note]
+		note_textures[curr_note].texture = filled_boxes[correct_colors[curr_note]]
 	curr_note = curr_note + 1
