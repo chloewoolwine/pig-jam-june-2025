@@ -9,6 +9,7 @@ signal next_scene_please()
 
 
 func _ready() -> void:
-	control.set_total(grid_controller.total_notes)
+	control.set_total(grid_controller.total_notes, grid_controller.color_order)
 	grid_controller.update_gui.connect(control.update)
 	grid_controller.done.connect(next_scene_please.emit)
+	#control.set_level_name(level_name)
