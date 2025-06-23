@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4xdm1dn0wtq8"]
+
+[ext_resource type="Script" uid="uid://cq2cu8qiamf4r" path="res://scripts/main_scene.gd" id="1_echbf"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_echbf")
+all_levels = Array[String](["res://scenes/level_tutorial1.tscn", "res://scenes/level_tutorial2.tscn", "res://scenes/level_tutorial3.tscn", "res://scenes/level_1a.tscn", "res://scenes/level_1b.tscn", "res://scenes/level_1c.tscn", "res://scenes/level_1d.tscn", "res://scenes/level_1e.tscn", "res://scenes/level_2a.tscn", "res://scenes/level_2b.tscn", "res://scenes/level_2c.tscn", "res://scenes/level_2d.tscn", "res://scenes/level_3a.tscn", "res://scenes/level_3b.tscn"])
