@@ -31,7 +31,7 @@ var total_seconds: int
 var start_secs: int 
 
 func _ready() -> void:
-	print(little)
+	#print(little)
 	total_seconds = 0
 	start_secs = Time.get_ticks_msec()
 
@@ -50,8 +50,8 @@ func calculate_curr_time() -> String:
 	return "%02d:%02d" % [minutes,seconds]
 
 func set_total(total: int, color_order: Array[GridController.COLOR]) -> void:
-	print("gui total notes recieved: ", total)
-	print(little)
+	#print("gui total notes recieved: ", total)
+	#print(little)
 	little.texture = empty_boxes[color_order[0]]
 	total_notes = total
 	note_textures.append(little)

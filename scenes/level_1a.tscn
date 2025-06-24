@@ -1,21 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://b3asmx71ww280"]
+[gd_scene load_steps=7 format=4 uid="uid://b3asmx71ww280"]
 
 [ext_resource type="Script" uid="uid://bscu883dfgvfq" path="res://scripts/grid_controller.gd" id="1_flj0i"]
 [ext_resource type="Script" uid="uid://qk5hghmid230" path="res://scripts/level.gd" id="1_w4s5b"]
 [ext_resource type="TileSet" uid="uid://bc2lyj3f2wgct" path="res://scenes/resources/floor_set.tres" id="2_f21kj"]
 [ext_resource type="TileSet" uid="uid://no8fcexirfwv" path="res://scenes/resources/wall_set.tres" id="3_flj0i"]
 [ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_k27jk"]
-[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="5_mqqmo"]
-[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://other/env_notev2_c_high.wav" id="6_f21kj"]
-[ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="6_w4s5b"]
-[ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="7_qssp4"]
-[ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="8_pbo1y"]
-[ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="9_vae3n"]
-[ext_resource type="AudioStream" uid="uid://bd6ufl7xldfn7" path="res://sfx/env/notes v1/env_note_a.wav" id="10_ly1y2"]
-[ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="11_bfsg4"]
 [ext_resource type="PackedScene" uid="uid://bchhbhmr62pmm" path="res://scenes/control.tscn" id="14_k27jk"]
 
-[node name="Level3" type="Node2D"]
+[node name="Level4" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_w4s5b")
 
@@ -23,6 +15,7 @@ script = ExtResource("1_w4s5b")
 script = ExtResource("1_flj0i")
 level_size = Vector2i(14, 7)
 total_notes = 4
+note_order = Array[int]([6, 7, 11, 7])
 color_order = Array[int]([0, 1, 2, 3])
 
 [node name="Floor" type="TileMapLayer" parent="GridController"]
@@ -40,30 +33,6 @@ position = Vector2(40, 80)
 [node name="Objects" type="Node2D" parent="GridController"]
 
 [node name="Notes" type="Node2D" parent="GridController"]
-
-[node name="C" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("5_mqqmo")
-
-[node name="C_high" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("6_f21kj")
-
-[node name="D" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("6_w4s5b")
-
-[node name="E" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("7_qssp4")
-
-[node name="F" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("8_pbo1y")
-
-[node name="G" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("9_vae3n")
-
-[node name="A" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("10_ly1y2")
-
-[node name="B" type="AudioStreamPlayer2D" parent="GridController/Notes"]
-stream = ExtResource("11_bfsg4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(160, 90)

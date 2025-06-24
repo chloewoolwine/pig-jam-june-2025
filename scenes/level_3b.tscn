@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_3j1gn"]
 [ext_resource type="PackedScene" uid="uid://snsgbx84pu6f" path="res://scenes/block_small.tscn" id="5_uvdav"]
 [ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="6_h8mra"]
-[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://other/env_notev2_c_high.wav" id="7_6o03d"]
+[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://sfx/env_notev2_c_high.wav" id="7_6o03d"]
 [ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="7_c6cef"]
 [ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="8_6orcw"]
 [ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="9_lpm4e"]
@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://w423fisbdl6p" path="res://sfx/env/notes v1/env_note_b.wav" id="12_mfvy7"]
 [ext_resource type="PackedScene" uid="uid://bchhbhmr62pmm" path="res://scenes/control.tscn" id="15_3j1gn"]
 
-[node name="Level" type="Node2D"]
+[node name="Level4" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_y04c8")
 
@@ -24,6 +24,7 @@ script = ExtResource("1_y04c8")
 script = ExtResource("1_x41ws")
 level_size = Vector2i(14, 7)
 total_notes = 4
+note_order = Array[int]([7, 6, 4, 5])
 color_order = Array[int]([0, 1, 2, 3])
 
 [node name="Floor" type="TileMapLayer" parent="GridController"]

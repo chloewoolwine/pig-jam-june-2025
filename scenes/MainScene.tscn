@@ -4,4 +4,8 @@
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_echbf")
-all_levels = Array[String](["res://scenes/level_tutorial1.tscn", "res://scenes/level_tutorial2.tscn", "res://scenes/level_tutorial3.tscn", "res://scenes/level_1a.tscn", "res://scenes/level_1b.tscn", "res://scenes/level_1c.tscn", "res://scenes/level_1d.tscn", "res://scenes/level_1e.tscn", "res://scenes/level_2a.tscn", "res://scenes/level_2b.tscn", "res://scenes/level_2c.tscn", "res://scenes/level_2d.tscn", "res://scenes/level_3a.tscn", "res://scenes/level_3b.tscn"])
+all_levels = Array[String](["res://scenes/level_tutorial1.tscn", "res://scenes/level_tutorial2.tscn", "res://scenes/level_tutorial3.tscn", "res://scenes/level_1a.tscn", "res://scenes/level_1b.tscn", "res://scenes/level_1c.tscn", "res://scenes/level_1d.tscn", "res://scenes/level_1e.tscn", "res://scenes/level_2a.tscn", "res://scenes/level_2b.tscn", "res://scenes/level_2c.tscn", "res://scenes/level_2d.tscn", "res://scenes/level_2e.tscn", "res://scenes/level_3a.tscn", "res://scenes/level_3b.tscn", "res://scenes/level_3c.tscn", "res://scenes/level_3d.tscn", "res://scenes/level_3e.tscn"])
+start_with = 13
+
+[node name="backgroundmusic" type="AudioStreamPlayer2D" parent="."]
+volume_db = -33.145

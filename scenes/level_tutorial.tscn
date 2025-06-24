@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://no8fcexirfwv" path="res://scenes/resources/wall_set.tres" id="3_4g2na"]
 [ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_mlhid"]
 [ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="5_4g2na"]
-[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://other/env_notev2_c_high.wav" id="6_37ebu"]
+[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://sfx/env_notev2_c_high.wav" id="6_37ebu"]
 [ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="6_jlqkh"]
 [ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="7_37ebu"]
 [ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="8_fh817"]

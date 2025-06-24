@@ -303,11 +303,11 @@ func input_timer(time:float) -> void:
 	accepting_input = true
 
 func immovable_block_at_space(targ: Vector2) -> bool:
-	print("checking for block targ",targ)
+	#print("checking for block targ",targ)
 	var node := grid_controller.get_object_at_space(targ) 
 	if node != null:
-		print("not null")
+		#print("not null")
 		if node is Block:
-			print("node is block")
+			#print("node is block")
 			return !node.is_valid_dir_to_move((targ-global_position),((targ-global_position) * -1).normalized())
 	return false

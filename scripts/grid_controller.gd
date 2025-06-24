@@ -4,37 +4,53 @@ class_name GridController
 signal update_gui(reset: bool)
 signal done()
 
+const NOTE_PLAYER = preload("res://scenes/note.tscn")
+
+const ENV_NOTE_A = preload("res://sfx/env/notes v1/env_note_a.wav")
+const ENV_NOTE_A_HIGH = preload("res://sfx/env/notes v1/env_note_a_high.wav")
+const ENV_NOTE_B = preload("res://sfx/env/notes v1/env_note_b.wav")
+const ENV_NOTE_B_HIGH = preload("res://sfx/env/notes v1/env_note_b_high.wav")
+const ENV_NOTE_C_HIGH = preload("res://sfx/env/notes v1/env_note_c_high.wav")
+const ENV_NOTE_C_LOW = preload("res://sfx/env/notes v1/env_note_c_low.wav")
+const ENV_NOTE_D = preload("res://sfx/env/notes v1/env_note_d.wav")
+const ENV_NOTE_D_HIGH = preload("res://sfx/env/notes v1/env_note_d_high.wav")
+const ENV_NOTE_E = preload("res://sfx/env/notes v1/env_note_e.wav")
+const ENV_NOTE_E_HIGH = preload("res://sfx/env/notes v1/env_note_e_high.wav")
+const ENV_NOTE_F = preload("res://sfx/env/notes v1/env_note_f.wav")
+const ENV_NOTE_F_HIGH = preload("res://sfx/env/notes v1/env_note_f_high.wav")
+const ENV_NOTE_G = preload("res://sfx/env/notes v1/env_note_g.wav")
+const ENV_NOTE_G_HIGH = preload("res://sfx/env/notes v1/env_note_g_high.wav")
+
 @export var level_size: Vector2i
 @export var total_notes: int
 @export var note_order: Array[NOTE]
-@export var color_order: Array[COLOR]
+@export var color_order: Array[COLOR]	
 
 @onready var player: Player = $Player
 @onready var objects: Node2D = $Objects
-
-@onready var c: AudioStreamPlayer2D = $Notes/C
-@onready var d: AudioStreamPlayer2D = $Notes/D
-@onready var e: AudioStreamPlayer2D = $Notes/E
-@onready var f: AudioStreamPlayer2D = $Notes/F
-@onready var g: AudioStreamPlayer2D = $Notes/G
-@onready var a: AudioStreamPlayer2D = $Notes/A
-@onready var b: AudioStreamPlayer2D = $Notes/B
-@onready var c_high: AudioStreamPlayer2D = $Notes/C_high
+@onready var note_holder: Node2D = $Notes
 
 var won_level: bool
 var current_loc: int # 0 indexed baby!
 
 var live_objects: Array[Node2D]
+var note_players: Array[AudioStreamPlayer2D]
 
 enum NOTE{
-	low_c,
+	c,
 	d,
 	e,
 	f,
 	g,
 	a,
 	b,
-	high_c
+	high_c,
+	high_d,
+	high_e,
+	high_f,
+	high_g,
+	high_a,
+	high_b
 }
 
 enum COLOR{
@@ -63,6 +79,32 @@ func _ready() -> void:
 	if color_order.size() == 0:
 		for i in total_notes:
 			color_order.append(i % 7)
+	
+	# lol my throat hurts.
+	var children = note_holder.get_children()
+	for child in children:
+		child.free()
+	
+	make_note_player(ENV_NOTE_C_LOW)
+	make_note_player(ENV_NOTE_D)
+	make_note_player(ENV_NOTE_E)
+	make_note_player(ENV_NOTE_F)
+	make_note_player(ENV_NOTE_G)
+	make_note_player(ENV_NOTE_A)
+	make_note_player(ENV_NOTE_B)
+	make_note_player(ENV_NOTE_C_HIGH)
+	make_note_player(ENV_NOTE_D_HIGH)
+	make_note_player(ENV_NOTE_E_HIGH)
+	make_note_player(ENV_NOTE_F_HIGH)
+	make_note_player(ENV_NOTE_G_HIGH)
+	make_note_player(ENV_NOTE_A_HIGH)
+	make_note_player(ENV_NOTE_B_HIGH)
+
+func make_note_player(env) -> void:
+	var lc = NOTE_PLAYER.instantiate()
+	note_holder.add_child(lc)
+	lc.stream = env
+	note_players.append(lc)
 
 func reset_all():
 	player.reset()   
@@ -114,32 +156,14 @@ func play_win() -> void:
 	await get_tree().create_timer(.5).timeout
 	won_level = true
 	player.idle()
-	# TODO: if they supply me with melodies i can play those here
-	# otherwise, play each note with a little delay between
 	for i in range(note_order.size()):
 		await get_tree().create_timer(.2).timeout
-		play_note(i+1, Vector2i.MIN);
+		play_note(note_order[i], Vector2i.MIN);
 	await get_tree().create_timer(.4).timeout
 	player.play_win()
 
 func play_note(note: NOTE, _location: Vector2i) -> void: 
-	match note:
-		NOTE.low_c:
-			c.play()
-		NOTE.d:
-			d.play()
-		NOTE.e:
-			e.play()
-		NOTE.f:
-			f.play()
-		NOTE.g:
-			g.play()
-		NOTE.a:
-			a.play()
-		NOTE.b:
-			b.play()
-		NOTE.high_c:
-			c_high.play()
+	note_players[note].play()
 	if _location != Vector2i.MIN:
 		# cute animation 
 		pass
