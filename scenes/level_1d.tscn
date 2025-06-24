@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://benlo1573yim0" path="res://scenes/player.tscn" id="4_4uxgr"]
 [ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="5_jcdkw"]
 [ext_resource type="AudioStream" uid="uid://cv6gtv0j8mmyi" path="res://sfx/env/notes v1/env_note_d.wav" id="6_5ivlb"]
-[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://other/env_notev2_c_high.wav" id="6_x01wo"]
+[ext_resource type="AudioStream" uid="uid://b4a3yqtlbvpgm" path="res://sfx/env_notev2_c_high.wav" id="6_x01wo"]
 [ext_resource type="AudioStream" uid="uid://dphfvvbyqhsdb" path="res://sfx/env/notes v1/env_note_e.wav" id="7_g8yyh"]
 [ext_resource type="AudioStream" uid="uid://d1kodie1ldhvo" path="res://sfx/env/notes v1/env_note_f.wav" id="8_dim75"]
 [ext_resource type="AudioStream" uid="uid://dbs3demi754gf" path="res://sfx/env/notes v1/env_note_g.wav" id="9_8xeye"]
@@ -23,6 +23,7 @@ script = ExtResource("1_5ivlb")
 script = ExtResource("1_44cf1")
 level_size = Vector2i(14, 7)
 total_notes = 6
+note_order = Array[int]([1, 2, 7, 8, 7, 7])
 color_order = Array[int]([0, 1, 2, 3, 4, 5])
 
 [node name="Floor" type="TileMapLayer" parent="GridController"]
