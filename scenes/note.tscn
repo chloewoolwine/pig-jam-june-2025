@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdy3olwd2epap"]
+
+[ext_resource type="AudioStream" uid="uid://dr45qveqk5kud" path="res://sfx/env/notes v1/env_note_c_low.wav" id="1_t3yvt"]
+
+[node name="Note" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_t3yvt")
